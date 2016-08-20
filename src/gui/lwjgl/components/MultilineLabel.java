@@ -3,6 +3,7 @@ package gui.lwjgl.components;
 import static org.lwjgl.opengl.GL11.*;
 
 public class MultilineLabel extends Label {
+	private static int SPACE_BETWEEN_LINES = 5;
 
 	private Slider slider;
 
@@ -43,48 +44,53 @@ public class MultilineLabel extends Label {
 	}
 
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		slider.paint(delta);
 
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 		glEnd();
 		
 		super.paintBorder();
 
-		int y = centerY - sizeY / 2;
-		int posX = centerX - sizeX / 2;
+		int y = 0;
+		int posX = 0;
 
 		int offset = slider.getValue();
 		for (String s : text.split("\n")) {
 			s = s.replace("\r", "");
 			for (String d : s.split(" ")) {
-				if (posX + font.getWidth(d) > centerX + sizeX / 2) {
-					posX = centerX - sizeX / 2;
+				if (posX + font.getWidth(d) > sizeX) {
+					posX = 0;
 					if (offset != 0) {
 						offset--;
 						continue;
 					}
-					y += font.getHeight(s) + 5;
-					if (y > centerY + sizeY / 2)
+					y += font.getHeight(s) + SPACE_BETWEEN_LINES;
+					if (y > sizeY)
 						return;
 				}
 				if (offset == 0)
-					font.drawString(d, posX + 3, y, text_r, text_g, text_b, text_a);
+					font.drawString(d, posX, y, text_r, text_g, text_b, text_a);
 				posX += font.getWidth(d + " ");
 			}
-			posX = centerX - sizeX / 2;
+			posX = 0;
 			if (offset != 0) {
 				offset--;
 				continue;
 			}
-			y += font.getHeight(s) + 5;
-			if (y > centerY + sizeY / 2 - font.getHeight())
+			y += font.getHeight(s) + SPACE_BETWEEN_LINES;
+			if (y > sizeY / 2 - font.getHeight())
 				return;
 		}
+		
+		glPopMatrix();
 	}
 
 	@Override

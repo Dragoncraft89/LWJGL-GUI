@@ -9,6 +9,8 @@ import org.lwjgl.opengl.Display;
 import gui.lwjgl.listener.ChangeEventListener;
 
 public class Slider extends Component {
+	private static final int MINIMAL_SIZE = 5;
+	
 	private int value;
 
 	private int maxValue;
@@ -35,6 +37,9 @@ public class Slider extends Component {
 
 	@Override
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		int d = maxValue + 1;
 		float posX = sizeX / (float) d;
 		float posY = sizeY / (float) d;
@@ -43,28 +48,29 @@ public class Slider extends Component {
 		glColor4f(background_r, background_g, background_b, background_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(0, sizeY);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(sizeX, 0);
 
 		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())
 			glColor4f(foreground_r * 0.5f, foreground_g * 0.5f, foreground_b * 0.5f, foreground_a);
 		if (horizontal) {
-			glVertex2f((centerX - sizeX / 2) + (value) * posX, centerY - sizeY / 2);
-			glVertex2f((centerX - sizeX / 2) + (value) * posX, centerY + sizeY / 2);
-			glVertex2f((centerX - sizeX / 2) + Math.max((value + 1) * posX, value * posX + 5), centerY + sizeY / 2);
-			glVertex2f((centerX - sizeX / 2) + Math.max((value + 1) * posX, value * posX + 5), centerY - sizeY / 2);
+			glVertex2f((value) * posX, 0);
+			glVertex2f((value) * posX, sizeY);
+			glVertex2f(Math.max((value + 1) * posX, value * posX + MINIMAL_SIZE), sizeY);
+			glVertex2f(Math.max((value + 1) * posX, value * posX + MINIMAL_SIZE), 0);
 		} else {
-			glVertex2f(centerX - sizeX / 2, (centerY - sizeY / 2) + (value) * posY);
-			glVertex2f(centerX - sizeX / 2, (centerY - sizeY / 2) + Math.max((value + 1) * posY, value * posY + 5));
-			glVertex2f(centerX + sizeX / 2, (centerY - sizeY / 2) + Math.max((value + 1) * posY, value * posY + 5));
-			glVertex2f(centerX + sizeX / 2, (centerY - sizeY / 2) + (value) * posY);
+			glVertex2f(0, (value) * posY);
+			glVertex2f(0, Math.max((value + 1) * posY, value * posY + MINIMAL_SIZE));
+			glVertex2f(sizeX, Math.max((value + 1) * posY, value * posY + MINIMAL_SIZE));
+			glVertex2f(sizeX, (value) * posY);
 		}
 		glEnd();
 		
 		super.paintBorder();
+		glPopMatrix();
 	}
 
 	private void checkState(int oldvalue) {

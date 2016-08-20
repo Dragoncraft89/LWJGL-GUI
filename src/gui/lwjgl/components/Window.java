@@ -2,8 +2,6 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import org.lwjgl.opengl.Display;
-
 public class Window extends Component {
 
 	private int offsetX;
@@ -60,9 +58,7 @@ public class Window extends Component {
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
 		x += offsetX;
 		y += offsetY;
-		if (button == 0 && label.centerX - sizeX / 2 < x && label.centerX + sizeX / 2 > x
-				&& Display.getHeight() - (label.centerY + label.sizeY / 2) < y
-				&& Display.getHeight() - (label.centerY - label.sizeY / 2) > y) {
+		if (button == 0 && label.isInComponent(x, y)) {
 			focused = true;
 			return true;
 		}

@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 
 import gui.lwjgl.listener.SelectionListener;
+import gui.lwjgl.util.LWJGLFont;
+import gui.lwjgl.util.Texture;
 
 public class List extends Component {
+	protected static final int SLIDER_WIDTH = 10;
+	protected static final int PADDING_LEFT = 5;
+	protected static final int MARGIN_BETWEEN_ELEMENTS = 2;
 
 	protected ArrayList<SelectionListener> listeners = new ArrayList<SelectionListener>();
 
@@ -19,7 +24,6 @@ public class List extends Component {
 	protected Slider slider;
 
 	protected int selected;
-	protected boolean lastFrame;
 	
 	private float list_r, list_g, list_b, list_a;
 
@@ -28,7 +32,7 @@ public class List extends Component {
 		this.elementsVisible = elementsVisible;
 		this.elements = new ListElement[0];
 		this.panel = new Panel(centerX, centerY, sizeX, sizeY);
-		this.slider = new Slider(centerX + sizeX / 2 - 5, centerY, 10, sizeY, false);
+		this.slider = new Slider(centerX + sizeX / 2 - 5, centerY, SLIDER_WIDTH, sizeY, false);
 		panel.addComponent(slider);
 		setElements(new ListElement[1]);
 		
@@ -86,49 +90,50 @@ public class List extends Component {
 	}
 
 	protected void paintElement(int heightPerElement, int offset, int y, int i) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, y, 0);
+		
 		glBegin(GL_QUADS);
 		if (i == selected)
 			glColor4f(list_r, list_g, list_b, list_a);
 		else
 			glColor4f(list_r * 0.5f, list_g * 0.5f, list_b * 0.5f, list_a);
-		glVertex2f(centerX - sizeX / 2 + 1, y + 1);
-		glVertex2f(centerX + sizeX / 2 - 10, y + 1);
-		glVertex2f(centerX + sizeX / 2 - 10, y + heightPerElement - 1);
-		glVertex2f(centerX - sizeX / 2 + 1, y + heightPerElement - 1);
+		glVertex2f(1, 1);
+		glVertex2f(sizeX - SLIDER_WIDTH, 1);
+		glVertex2f(sizeX - SLIDER_WIDTH, heightPerElement - 1);
+		glVertex2f(1, heightPerElement - 1);
 		glEnd();
 
 		Texture tex = elements[i].getIcon();
-		int width = 0;
 		if (tex != null) {
 			tex.bind();
-			width = (int) (tex.getWidth() / (float) tex.getHeight() * heightPerElement);
+			int width = (int) (tex.getWidth() / (float) tex.getHeight() * heightPerElement);
 			glBegin(GL_QUADS);
 			glColor4f(1, 1, 1, 1);
 			glTexCoord2f(0, 0);
-			glVertex2f(centerX - sizeX / 2, y);
+			glVertex2f(0, 0);
 			glTexCoord2f(1, 0);
-			glVertex2f(centerX - sizeX / 2 + width, y);
+			glVertex2f(width, 0);
 			glTexCoord2f(1, 1);
-			glVertex2f(centerX - sizeX / 2 + width, y + heightPerElement);
+			glVertex2f(width, heightPerElement);
 			glTexCoord2f(0, 1);
-			glVertex2f(centerX - sizeX / 2, y + heightPerElement);
+			glVertex2f(0, heightPerElement);
 			glEnd();
 			glBindTexture(GL_TEXTURE_2D, 0);
 
 			String name = elements[i].getName();
-			drawString(width, font, name, centerX - sizeX / 2 + width + 5,
-					y + heightPerElement / 2, text_r, text_g, text_b, text_a);
+			drawString(width, font, name, width + PADDING_LEFT,
+					heightPerElement / 2, text_r, text_g, text_b, text_a);
 		} else {
 			String name = elements[i].getName();
-			drawString(font, name, centerX - sizeX / 2 + width + 5,
-					y + heightPerElement / 2, text_r, text_g, text_b, text_a);
+			drawString(font, name, PADDING_LEFT,
+					heightPerElement / 2, text_r, text_g, text_b, text_a);
 		}
 	}
 
 	@Override
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
-		if (button == 0 && (x > centerX - sizeX / 2 && x < centerX + sizeX / 2 - 10)
-				&& (Display.getHeight() - y > centerY - sizeY / 2 && Display.getHeight() - y < centerY + sizeY / 2)) {
+		if (button == 0 && isInComponent(x, y)) {
 			int oldSelect = this.selected;
 			this.selected = (int) (slider.getValue()
 					+ (Display.getHeight() - y - centerY + sizeY / 2) / (float) sizeY * elementsVisible);
@@ -181,11 +186,11 @@ public class List extends Component {
 		return super.mouseWheelChanged(gui, mouseWheel, x, y);
 	}
 	
-	public void drawString(LWJGLFont font, String text, int x, int y, float r, float g, float b, float a) {
-		drawString(0, font, text, x, y, r, g, b, a);
+	public void drawString(LWJGLFont font, String text, int leftX, int leftY, float r, float g, float b, float a) {
+		drawString(0, font, text, leftX, leftY, r, g, b, a);
 	}
 	
-	public void drawString(int texWidth, LWJGLFont font, String text, int x, int y, float r, float g, float b, float a) {
+	public void drawString(int texWidth, LWJGLFont font, String text, int leftX, int leftY, float r, float g, float b, float a) {
 		String s = "";
 		for(int i = 1; i <= text.length(); i++) {
 			String old = s;
@@ -196,6 +201,6 @@ public class List extends Component {
 			}
 		}
 
-		font.drawString(s, x, y - font.getHeight() / 2, r, g, b, a);
+		font.drawString(s, leftX, leftY - font.getHeight() / 2, r, g, b, a);
 	}
 }

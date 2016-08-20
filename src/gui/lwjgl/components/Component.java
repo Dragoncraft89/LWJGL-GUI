@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 
 import gui.lwjgl.listener.EventListener;
+import gui.lwjgl.util.LWJGLFont;
 
 public abstract class Component {
 	public static final LWJGLFont FONT_STANDARD;
@@ -23,6 +24,8 @@ public abstract class Component {
 		FONT_STANDARD = standard;
 		FONT_SMALL = small;
 	}
+	
+	protected Component parent;
 	
 	protected float background_r = 0.25f, background_g = 0.25f, background_b = 0.25f, background_a = 1;
 	protected float foreground_r = 0.5f, foreground_g = 0.5f, foreground_b = 0.5f, foreground_a = 1;
@@ -209,21 +212,21 @@ public abstract class Component {
 		
 		glBegin(GL_LINES);
 		glColor4f(border_r, border_g, border_b, 1);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
 		
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
 		
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2 - 1);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2 - 1);
+		glVertex2f(sizeX, sizeY - 1);
+		glVertex2f(0, sizeY - 1);
 		
-		glVertex2f(centerX - sizeX / 2 + 1, centerY - sizeY / 2);
-		glVertex2f(centerX - sizeX / 2 + 1, centerY + sizeY / 2);
+		glVertex2f(1, 0);
+		glVertex2f(1, sizeY);
 		glEnd();
 	}
 
-	public void drawString(LWJGLFont font, String text, int x, int y, float r, float g, float b, float a) {
+	public void drawString(LWJGLFont font, String text, int centerX, int centerY, float r, float g, float b, float a) {
 		String s = "";
 		for(int i = 1; i <= text.length(); i++) {
 			String old = s;
@@ -234,6 +237,14 @@ public abstract class Component {
 			}
 		}
 		
-		font.drawString(s, x - font.getWidth(s) / 2, y - font.getHeight() / 2, r, g, b, a);
+		font.drawString(s, centerX - font.getWidth(s) / 2, centerY - font.getHeight() / 2, r, g, b, a);
+	}
+
+	public void setParent(Component parent) {
+		this.parent = parent;
+	}
+	
+	public Component getParent() {
+		return parent;
 	}
 }

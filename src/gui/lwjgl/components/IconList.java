@@ -4,6 +4,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
 
+import gui.lwjgl.util.Texture;
+
 public class IconList extends List {
 
 	protected int elementHeight;
@@ -39,6 +41,9 @@ public class IconList extends List {
 	public void paint(float delta) {
 		panel.paint(delta);
 
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		if (elementWidth == 0)
 			return;
 		int elementsX = sizeX / elementWidth;
@@ -57,28 +62,29 @@ public class IconList extends List {
 					else
 						glColor3f(0.5f, 0.5f, 0.5f);
 					glTexCoord2f(0, 0);
-					glVertex2f(centerX - sizeX / 2 + elementWidth * i,
-							centerY - sizeY / 2 + (elementHeight + 2) * line);
+					glVertex2f(elementWidth * i,
+							(elementHeight + MARGIN_BETWEEN_ELEMENTS) * line);
 					glTexCoord2f(0, 1);
-					glVertex2f(centerX - sizeX / 2 + elementWidth * i,
-							centerY - sizeY / 2 + (elementHeight + 2) * line + elementHeight);
+					glVertex2f(elementWidth * i,
+							(elementHeight + MARGIN_BETWEEN_ELEMENTS) * line + elementHeight);
 					glTexCoord2f(1, 1);
-					glVertex2f(centerX - sizeX / 2 + elementWidth * (i + 1),
-							centerY - sizeY / 2 + (elementHeight + 2) * line + elementHeight);
+					glVertex2f(elementWidth * (i + 1),
+							-(elementHeight + MARGIN_BETWEEN_ELEMENTS) * line + elementHeight);
 					glTexCoord2f(1, 0);
-					glVertex2f(centerX - sizeX / 2 + elementWidth * (i + 1),
-							centerY - sizeY / 2 + (elementHeight + 2) * line);
+					glVertex2f(elementWidth * (i + 1),
+							(elementHeight + MARGIN_BETWEEN_ELEMENTS) * line);
 					glEnd();
 					glBindTexture(GL_TEXTURE_2D, 0);
 				}
 			}
 		}
+		
+		glPopMatrix();
 	}
 
 	@Override
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
-		if (elementWidth != 0 && button == 0 && !lastFrame && (x > centerX - sizeX / 2 && x < centerX + sizeX / 2 - 10)
-				&& (y > centerY - sizeY / 2 && y < centerY + sizeY / 2)) {
+		if (elementWidth != 0 && button == 0 && isInComponent(x, y)) {
 			int oldSelect = this.selected;
 			int elementsX = sizeX / elementWidth;
 			int vertical = slider.getValue() + (Display.getHeight() - y - centerY + sizeY / 2) / elementHeight;
@@ -90,5 +96,11 @@ public class IconList extends List {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean isInComponent(int x, int y) {
+		return (x > centerX - sizeX / 2 && x < centerX + sizeX / 2 - SLIDER_WIDTH)
+		&& (y > centerY - sizeY / 2 && y < centerY + sizeY / 2);
 	}
 }

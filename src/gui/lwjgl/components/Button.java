@@ -14,23 +14,29 @@ public class Button extends Component {
 
 	@Override
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		glBegin(GL_QUADS);
+		
 		if (!highlight)
 			glColor4f(background_r, background_g, background_b, background_a);
 		else
 			glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.1f, background_g * 0.1f, background_b * 0.1f, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 		glEnd();
 
 		super.paintBorder();
 		
 		glColor3f(1, 1, 1);
-		super.drawString(font, name, centerX, centerY, text_r, text_g, text_b, text_a);
+		super.drawString(font, name, sizeX / 2, sizeY / 2, text_r, text_g, text_b, text_a);
+		
+		glPopMatrix();
 	}
 
 	public boolean mouseMoved(GUI gui, int x, int y, int dX, int dY) {

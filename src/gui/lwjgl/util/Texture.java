@@ -1,4 +1,4 @@
-package gui.lwjgl.components;
+package gui.lwjgl.util;
 
 import static org.lwjgl.opengl.GL11.*;
 

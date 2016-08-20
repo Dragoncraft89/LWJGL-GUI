@@ -45,10 +45,12 @@ public class GUI {
 	}
 
 	public void addComponent(Component c) {
+		c.setParent(null);
 		components.add(c);
 	}
 
 	public void removeComponent(Component c) {
+		c.setParent(null);
 		components.remove(c);
 	}
 

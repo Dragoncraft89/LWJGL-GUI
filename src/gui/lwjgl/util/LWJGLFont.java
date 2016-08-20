@@ -1,4 +1,4 @@
-package gui.lwjgl.components;
+package gui.lwjgl.util;
 
 import java.awt.Color;
 import java.awt.Font;

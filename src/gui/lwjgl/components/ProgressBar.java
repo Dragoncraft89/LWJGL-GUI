@@ -26,6 +26,9 @@ public class ProgressBar extends Component {
 
 	@Override
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		int d = maxValue - minValue + 1;
 		float posX = sizeX / (float) d;
 		float posY = sizeY / (float) d;
@@ -34,28 +37,29 @@ public class ProgressBar extends Component {
 		glColor4f(background_r, background_g, background_b, background_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(0, sizeY);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(sizeX, 0);
 
 		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())
 			glColor4f(foreground_r * 0.5f, foreground_g * 0.5f, foreground_b * 0.5f, foreground_a);
 		if (horizontal) {
-			glVertex2f((centerX - sizeX / 2), centerY - sizeY / 2);
-			glVertex2f((centerX - sizeX / 2), centerY + sizeY / 2);
-			glVertex2f((centerX - sizeX / 2) + (value + 1) * posX, centerY + sizeY / 2);
-			glVertex2f((centerX - sizeX / 2) + (value + 1) * posX, centerY - sizeY / 2);
+			glVertex2f(0, 0);
+			glVertex2f(0, sizeY);
+			glVertex2f((value + 1) * posX, sizeY);
+			glVertex2f((value + 1) * posX, 0);
 		} else {
-			glVertex2f(centerX - sizeX / 2, (centerY - sizeY / 2));
-			glVertex2f(centerX - sizeX / 2, (centerY - sizeY / 2) + (value + 1) * posY);
-			glVertex2f(centerX + sizeX / 2, (centerY - sizeY / 2) + (value + 1) * posY);
-			glVertex2f(centerX + sizeX / 2, (centerY - sizeY / 2));
+			glVertex2f(0, 0);
+			glVertex2f(0, (value + 1) * posY);
+			glVertex2f(sizeX, (value + 1) * posY);
+			glVertex2f(sizeX, 0);
 		}
 		glEnd();
 		
 		super.paintBorder();
+		glPopMatrix();
 	}
 
 	public void setMinValue(int minValue) {

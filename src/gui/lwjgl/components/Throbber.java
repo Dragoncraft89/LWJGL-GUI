@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.util.Texture;
+
 public class Throbber extends Component {
 
 	private Texture tex;
@@ -22,24 +24,25 @@ public class Throbber extends Component {
 	@Override
 	public void paint(float delta) {
 		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		tex.bind();
 		
 		if(!paused)
 			rotation += delta * rotationAmplifier * 10;
 
-		glTranslatef(centerX, centerY, 0);
 		glRotated(rotation, 0, 0, 1);
 		
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glColor3f(1, 1, 1);
-		glVertex2f(-sizeX / 2, -sizeY / 2);
+		glVertex2f(0, 0);
 		glTexCoord2f(0, 1);
-		glVertex2f(-sizeX / 2, +sizeY / 2);
+		glVertex2f(0, sizeY);
 		glTexCoord2f(1, 1);
-		glVertex2f(+sizeX / 2, +sizeY / 2);
+		glVertex2f(sizeX, sizeY);
 		glTexCoord2f(1, 0);
-		glVertex2f(+sizeX / 2, -sizeY / 2);
+		glVertex2f(sizeX, 0);
 		glEnd();
 		
 		glBindTexture(GL_TEXTURE_2D, 0);

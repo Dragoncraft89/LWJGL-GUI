@@ -17,12 +17,15 @@ public class Panel extends Component {
 
 	@Override
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 		glEnd();
 		
 		super.paintBorder();
@@ -30,6 +33,8 @@ public class Panel extends Component {
 		for (int i = 0; i < components.size(); i++) {
 			components.get(i).paint(delta);
 		}
+		
+		glPopMatrix();
 	}
 
 	public void addComponent(Component component) {

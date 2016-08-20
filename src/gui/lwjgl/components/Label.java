@@ -17,16 +17,20 @@ public class Label extends Component {
 
 	@Override
 	public void paint(float delta) {
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 		glEnd();
 		
 		super.paintBorder();
 
-		super.drawString(font, text, centerX, centerY, text_r, text_g, text_b, text_a);
+		super.drawString(font, text, sizeX / 2, sizeY / 2, text_r, text_g, text_b, text_a);
+		glPopMatrix();
 	}
 }

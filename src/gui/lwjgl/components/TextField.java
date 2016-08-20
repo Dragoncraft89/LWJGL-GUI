@@ -28,32 +28,20 @@ public class TextField extends Component {
 
 	@Override
 	public void paint(float delta) {
-		if(isFocused())
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		
+		if(isFocused() && isEditable())
 			timer += delta;
 		
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
-		glEnd();
-
-		glBegin(GL_LINES);
-		if (isFocused())
-			glColor3f(1, 1, 1);
-		else
-			glColor3f(0.25f, 0.25f, 0.25f);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY - sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX + sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2, centerY - sizeY / 2);
+		glVertex2f(0, 0);
+		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 		glEnd();
 		
 		String s = "";
@@ -68,10 +56,12 @@ public class TextField extends Component {
 
 		super.paintBorder();
 		
-		font.drawString(s, centerX  - sizeX / 2 + padding, centerY - font.getHeight(s) / 2);
+		font.drawString(s, padding, (sizeY - font.getHeight(s)) / 2);
 		
 		if(timer % 1.5 <= 0.75 && isFocused() && isEditable())
 			drawCursor();
+		
+		glPopMatrix();
 	}
 	
 	private void drawCursor() {
@@ -79,10 +69,10 @@ public class TextField extends Component {
 		
 		glBegin(GL_QUADS);
 		glColor3f(1, 1, 1);
-		glVertex2f(centerX - sizeX / 2 + size - cursorWidth / 2f, centerY - sizeY / 2);
-		glVertex2f(centerX - sizeX / 2 + size - cursorWidth / 2f, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2 + size + cursorWidth / 2f, centerY + sizeY / 2);
-		glVertex2f(centerX - sizeX / 2 + size + cursorWidth / 2f, centerY - sizeY / 2);
+		glVertex2f(size - cursorWidth / 2f, 0);
+		glVertex2f(size - cursorWidth / 2f, sizeY);
+		glVertex2f(size + cursorWidth / 2f, sizeY);
+		glVertex2f(size + cursorWidth / 2f, 0);
 		glEnd();
 	}
 
