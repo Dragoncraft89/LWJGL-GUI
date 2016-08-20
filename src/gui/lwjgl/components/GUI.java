@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
 
+import gui.lwjgl.style.StyleManager;
 import gui.lwjgl.style.StyleTemplate;
 
 public class GUI {
@@ -15,10 +16,17 @@ public class GUI {
 	protected ArrayList<Component> components = new ArrayList<Component>();
 
 	public GUI() {
+		loadTemplate(StyleManager.getDefaultTemplate());
 	}
 	
 	public GUI(StyleTemplate template) {
-		
+		loadTemplate(template);
+	}
+	
+	public void loadTemplate(StyleTemplate template) {
+		for (Component c : components) {
+			c.loadTemplate(template);
+		}
 	}
 
 	public void open() {

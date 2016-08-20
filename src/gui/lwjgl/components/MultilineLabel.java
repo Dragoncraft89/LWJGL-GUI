@@ -24,6 +24,14 @@ public class MultilineLabel extends Label {
 		this.text = text;
 		slider.setMaxValue(Math.max(0, (int) Math.ceil(getLines(text) - ((float) sizeY / (font.getHeight() + 5)))));
 	}
+	
+	public void setSliderBackgroundColor(float r, float g, float b, float a) {
+		slider.setBackgroundColor(r, g, b, a);
+	}
+	
+	public void setSliderForegroundColor(float r, float g, float b, float a) {
+		slider.setForegroundColor(r, g, b, a);
+	}
 
 	private int getLines(String text) {
 		int lines = 0;

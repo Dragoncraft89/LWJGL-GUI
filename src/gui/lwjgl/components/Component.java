@@ -12,17 +12,15 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 
 import gui.lwjgl.listener.ClickEventListener;
+import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.LWJGLFont;
+import gui.lwjgl.util.Texture;
 
 public abstract class Component {
 	public static final LWJGLFont FONT_STANDARD;
-	public static final LWJGLFont FONT_SMALL;
 	
 	static{
-		LWJGLFont standard = new LWJGLFont(new Font("Arial", Font.PLAIN, 22));
-		LWJGLFont small = new LWJGLFont(new Font("Arial", Font.PLAIN, 16));
-		FONT_STANDARD = standard;
-		FONT_SMALL = small;
+		FONT_STANDARD = new LWJGLFont(new Font("Arial", Font.PLAIN, 22));
 	}
 	
 	private ArrayList<String> groups;
@@ -33,6 +31,8 @@ public abstract class Component {
 	protected float foreground_r = 0.5f, foreground_g = 0.5f, foreground_b = 0.5f, foreground_a = 1;
 	protected float border_r = 0f, border_g = 0f, border_b = 0f, border_a = 1;
 	protected float text_r = 0, text_g = 0, text_b = 0, text_a = 1;
+	
+	protected Texture texture;
 
 	protected int centerX;
 	protected int centerY;
@@ -45,7 +45,6 @@ public abstract class Component {
 	protected boolean drawBorder = true;
 
 	protected LWJGLFont font = FONT_STANDARD;
-	protected LWJGLFont fontSmall = FONT_SMALL;
 
 	public Component(int centerX, int centerY, int sizeX, int sizeY) {
 		this.centerX = centerX;
@@ -127,6 +126,15 @@ public abstract class Component {
 
 	public void setFont(LWJGLFont font) {
 		this.font = font;
+	}
+	
+	public void setTexture(Texture texture) {
+		this.texture = texture;
+	}
+	
+	protected void bindTexture() {
+		if(texture != null)
+			texture.bind();
 	}
 	
 	public void setBackgroundColor(float r, float g, float b, float a) {
@@ -263,5 +271,23 @@ public abstract class Component {
 	
 	public Component getParent() {
 		return parent;
+	}
+
+	public void loadTemplate(StyleTemplate style) {
+		for(String s:groups) {
+			float[] background = style.getBackgroundColor(s);
+			float[] foreground = style.getForegroundColor(s);
+			float[] text = style.getTextColor(s);
+			float[] border = style.getBorderColor(s);
+			
+			Texture tex = style.getTexture(s);
+			
+			setBackgroundColor(background[0], background[1], background[2], background[3]);
+			setForegroundColor(foreground[0], foreground[1], foreground[2], foreground[3]);
+			setTextColor(text[0], text[1], text[2], text[3]);
+			setBorderColor(border[0], border[1], border[2], border[3]);
+			
+			setTexture(tex);
+		}
 	}
 }

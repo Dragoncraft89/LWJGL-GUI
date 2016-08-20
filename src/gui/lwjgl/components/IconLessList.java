@@ -17,14 +17,19 @@ public class IconLessList extends List {
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, y, 0);
 		
+		bindTexture();
 		glBegin(GL_QUADS);
 		if (i == selected)
 			glColor4f(background_r, background_g, background_b, background_a);
 		else
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
+		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
 		glVertex2f(sizeX - SLIDER_WIDTH, 0);
+		glTexCoord2f(1, 1);
 		glVertex2f(sizeX - SLIDER_WIDTH, heightPerElement);
+		glTexCoord2f(0, 1);
 		glVertex2f(0, heightPerElement);
 		glEnd();
 

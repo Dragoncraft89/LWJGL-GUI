@@ -19,6 +19,7 @@ public class Button extends Component {
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		
+		bindTexture();
 		glBegin(GL_QUADS);
 		
 		if (!highlight)
@@ -27,9 +28,13 @@ public class Button extends Component {
 			glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.1f, background_g * 0.1f, background_b * 0.1f, background_a);
+		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
 		glVertex2f(sizeX, 0);
+		glTexCoord2f(1, 1);
 		glVertex2f(sizeX, sizeY);
+		glTexCoord2f(0, 1);
 		glVertex2f(0, sizeY);
 		glEnd();
 

@@ -36,6 +36,11 @@ public class IconList extends List {
 			this.slider.setMaxValue((elements.length) * elementWidth / sizeX);
 		this.selected = -1;
 	}
+	
+	@Override
+	public void setTexture(Texture texture) {
+		panel.setTexture(texture);
+	}
 
 	@Override
 	public void paint(float delta) {
