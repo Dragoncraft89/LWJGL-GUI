@@ -169,8 +169,4 @@ public class DialogHandler {
 		
 		return instance;
 	}
-	
-	public static DialogHandler createDialogHandler() {
-		return new DialogHandler();
-	}
 }
