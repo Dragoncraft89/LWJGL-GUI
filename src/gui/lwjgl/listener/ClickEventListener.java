@@ -2,7 +2,7 @@ package gui.lwjgl.listener;
 
 import gui.lwjgl.components.Component;
 
-public interface EventListener {
+public interface ClickEventListener {
 	public static final int PRESSED = 1;
 	public static final int RELEASED = 2;
 

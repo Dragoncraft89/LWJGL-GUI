@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import org.lwjgl.opengl.Display;
 
-import gui.lwjgl.listener.EventListener;
+import gui.lwjgl.listener.ClickEventListener;
 import gui.lwjgl.util.LWJGLFont;
 
 public abstract class Component {
@@ -39,7 +39,7 @@ public abstract class Component {
 	protected int sizeX;
 	protected int sizeY;
 
-	private ArrayList<EventListener> listener;
+	private ArrayList<ClickEventListener> listener;
 	protected boolean editable = true;
 	private boolean focused;
 	protected boolean drawBorder = true;
@@ -53,7 +53,7 @@ public abstract class Component {
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
 
-		listener = new ArrayList<EventListener>();
+		listener = new ArrayList<ClickEventListener>();
 		groups = new ArrayList<String>();
 		
 		groups.add("all");
@@ -89,7 +89,7 @@ public abstract class Component {
 		}
 	}
 
-	public void addEventListener(EventListener listener) {
+	public void addEventListener(ClickEventListener listener) {
 		this.listener.add(listener);
 	}
 
@@ -187,7 +187,7 @@ public abstract class Component {
 		}
 		
 		if(isInComponent(x, y)) {
-			fireEvent(x, y, EventListener.PRESSED);
+			fireEvent(x, y, ClickEventListener.PRESSED);
 			return true;
 		}
 		
@@ -200,7 +200,7 @@ public abstract class Component {
 		}
 		
 		if(isInComponent(x, y)) {
-			fireEvent(x, y, EventListener.RELEASED);
+			fireEvent(x, y, ClickEventListener.RELEASED);
 			return true;
 		}
 		
