@@ -11,6 +11,7 @@ public class Dialog extends GUI {
 	
 	public void openDialog(DialogHandler handler) {
 		this.handler = handler;
+		open();
 	}
 	
 	private void placeOnTop() {

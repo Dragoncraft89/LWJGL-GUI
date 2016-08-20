@@ -23,6 +23,7 @@ public class DialogHandler {
 	
 	public void openDialog(Dialog dialog) {
 		activeDialogs.push(dialog);
+		dialog.openDialog(this);
 	}
 	
 	public void paint() {
