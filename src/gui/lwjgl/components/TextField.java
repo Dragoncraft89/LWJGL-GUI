@@ -24,6 +24,8 @@ public class TextField extends Component {
 
 	public TextField(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX, centerY, sizeX, sizeY);
+		
+		addToGroup("textfields");
 	}
 
 	@Override

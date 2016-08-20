@@ -19,6 +19,8 @@ public class Throbber extends Component {
 		this.tex = tex;
 		
 		this.drawBorder = false;
+		
+		addToGroup("throbbers");
 	}
 
 	@Override

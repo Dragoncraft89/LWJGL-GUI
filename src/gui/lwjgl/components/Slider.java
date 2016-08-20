@@ -20,15 +20,15 @@ public class Slider extends Component {
 	private ArrayList<ChangeEventListener> listener = new ArrayList<ChangeEventListener>();
 
 	public Slider(int centerX, int centerY, int sizeX, int sizeY, boolean horizontal) {
-		super(centerX, centerY, sizeX, sizeY);
-		this.horizontal = horizontal;
-		maxValue = 1;
+		this(centerX, centerY, sizeX, sizeY, horizontal, 0, 1);
 	}
 
 	public Slider(int centerX, int centerY, int sizeX, int sizeY, boolean horizontal, int minValue, int maxValue) {
 		super(centerX, centerY, sizeX, sizeY);
 		this.horizontal = horizontal;
 		this.maxValue = maxValue;
+		
+		addToGroup("slider");
 	}
 
 	public void setMaxValue(int maxValue) {

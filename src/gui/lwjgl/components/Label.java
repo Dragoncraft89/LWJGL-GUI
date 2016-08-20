@@ -9,6 +9,8 @@ public class Label extends Component {
 	public Label(int centerX, int centerY, int sizeX, int sizeY, String text) {
 		super(centerX, centerY, sizeX, sizeY);
 		this.text = text;
+		
+		addToGroup("labels");
 	}
 
 	public void setText(String text) {

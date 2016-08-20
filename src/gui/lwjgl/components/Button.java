@@ -10,6 +10,8 @@ public class Button extends Component {
 	public Button(int centerX, int centerY, int sizeX, int sizeY, String name) {
 		super(centerX, centerY, sizeX, sizeY);
 		this.name = name;
+		
+		addToGroup("buttons");
 	}
 
 	@Override

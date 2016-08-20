@@ -19,6 +19,10 @@ public class Window extends Component {
 		this.label = new Label(centerX, centerY - sizeY / 2 + 12, sizeX, 25, title);
 		this.label.setBackgroundColor(0.05f, 0.05f, 0.05f, 1f);
 		this.label.setTextColor(1, 1, 1, 1);
+		
+		addToGroup("windows");
+		label.addToGroup("windows");
+		contentPane.addToGroup("windows");
 	}
 	
 	public Panel getContentPane() {

@@ -14,6 +14,8 @@ public class ProgressBar extends Component {
 		this.horizontal = horizontal;
 		this.minValue = minValue;
 		this.maxValue = maxValue;
+		
+		addToGroup("progressbars");
 	}
 
 	public ProgressBar(int centerX, int centerY, int sizeX, int sizeY, boolean horizontal) {

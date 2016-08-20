@@ -13,6 +13,8 @@ public class Panel extends Component {
 		background_r = 0.1f;
 		background_g = 0.1f;
 		background_b = 0.1f;
+		
+		addToGroup("panels");
 	}
 
 	@Override

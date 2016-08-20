@@ -25,6 +25,8 @@ public abstract class Component {
 		FONT_SMALL = small;
 	}
 	
+	private ArrayList<String> groups;
+	
 	protected Component parent;
 	
 	protected float background_r = 0.25f, background_g = 0.25f, background_b = 0.25f, background_a = 1;
@@ -52,6 +54,21 @@ public abstract class Component {
 		this.sizeY = sizeY;
 
 		listener = new ArrayList<EventListener>();
+		groups = new ArrayList<String>();
+		
+		groups.add("all");
+	}
+	
+	public void addToGroup(String group) {
+		groups.add(group);
+	}
+	
+	public void removeFromGroup(String group) {
+		groups.remove(group);
+	}
+	
+	public String[] getGroups() {
+		return groups.toArray(new String[groups.size()]);
 	}
 
 	public void moveTo(int centerX, int centerY) {

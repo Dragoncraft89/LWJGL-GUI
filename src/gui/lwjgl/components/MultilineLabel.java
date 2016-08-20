@@ -16,6 +16,8 @@ public class MultilineLabel extends Label {
 		background_g = 0.1f;
 		background_b = 0.1f;
 		background_a = 1f;
+		
+		addToGroup("multiline");
 	}
 
 	public void setText(String text) {

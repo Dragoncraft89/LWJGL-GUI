@@ -40,6 +40,8 @@ public class List extends Component {
 		list_g = 0.2f;
 		list_b = 0.2f;
 		list_a = 1f;
+		
+		addToGroup("lists");
 	}
 	
 	@Override

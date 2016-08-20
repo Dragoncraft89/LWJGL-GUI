@@ -4,6 +4,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class GUI {
 
 	protected long lastFrame;
@@ -13,6 +15,10 @@ public class GUI {
 	protected ArrayList<Component> components = new ArrayList<Component>();
 
 	public GUI() {
+	}
+	
+	public GUI(StyleTemplate template) {
+		
 	}
 
 	public void open() {
