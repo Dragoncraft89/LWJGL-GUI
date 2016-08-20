@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class GUI {
 
-	private long lastFrame;
+	protected long lastFrame;
 	
-	private Component focused;
+	protected Component focused;
 
-	ArrayList<Component> components = new ArrayList<Component>();
+	protected ArrayList<Component> components = new ArrayList<Component>();
 
 	public GUI() {
 	}

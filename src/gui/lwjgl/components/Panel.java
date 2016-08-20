@@ -39,6 +39,12 @@ public class Panel extends Component {
 
 	public void addComponent(Component component) {
 		components.add(component);
+		component.setParent(this);
+	}
+	
+	public void removeComponent(Component component) {
+		components.remove(component);
+		component.setParent(null);
 	}
 
 	@Override
@@ -68,6 +74,9 @@ public class Panel extends Component {
 
 	@Override
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
+		x -= centerX - sizeX / 2;
+		y -= centerY - sizeY / 2;
+		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseDown(gui, button, x, y))
 				return true;
@@ -77,6 +86,9 @@ public class Panel extends Component {
 
 	@Override
 	public boolean mouseUp(GUI gui, int button, int x, int y) {
+		x -= centerX - sizeX / 2;
+		y -= centerY - sizeY / 2;
+		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseUp(gui, button, x, y))
 				return true;
@@ -86,6 +98,9 @@ public class Panel extends Component {
 
 	@Override
 	public boolean mouseWheelChanged(GUI gui, int mouseWheel, int x, int y) {
+		x -= centerX - sizeX / 2;
+		y -= centerY - sizeY / 2;
+		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseWheelChanged(gui, mouseWheel, x, y))
 				return true;
@@ -95,6 +110,9 @@ public class Panel extends Component {
 
 	@Override
 	public boolean mouseMoved(GUI gui, int x, int y, int dX, int dY) {
+		x -= centerX - sizeX / 2;
+		y -= centerY - sizeY / 2;
+		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseMoved(gui, x, y, dX, dY))
 				return true;
