@@ -3,13 +3,13 @@ package gui.lwjgl.dialogs;
 import gui.lwjgl.components.GUI;
 
 public class Dialog extends GUI {
-	private DialogHandler handler;
+	private DialogManager handler;
 	
 	public Dialog() {
 		
 	}
 	
-	public void openDialog(DialogHandler handler) {
+	public void openDialog(DialogManager handler) {
 		this.handler = handler;
 		open();
 	}

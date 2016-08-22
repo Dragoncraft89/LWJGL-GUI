@@ -8,8 +8,8 @@ import org.lwjgl.input.Mouse;
 import gui.lwjgl.components.GUI;
 import gui.lwjgl.listener.EventCallBack;
 
-public class DialogHandler {
-	private static DialogHandler instance;
+public class DialogManager {
+	private static DialogManager instance;
 	
 	private Stack<Dialog> activeDialogs;
 	
@@ -17,7 +17,7 @@ public class DialogHandler {
 	
 	private EventCallBack callBack;
 	
-	private DialogHandler() {
+	private DialogManager() {
 		activeDialogs = new Stack<Dialog>();
 	}
 	
@@ -163,9 +163,9 @@ public class DialogHandler {
 		getDefault().dispatchEvents();
 	}
 	
-	public static DialogHandler getDefault() {
+	public static DialogManager getDefault() {
 		if(instance == null)
-			instance = new DialogHandler();
+			instance = new DialogManager();
 		
 		return instance;
 	}
