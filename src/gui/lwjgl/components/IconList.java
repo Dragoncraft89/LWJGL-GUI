@@ -85,6 +85,8 @@ public class IconList extends List {
 			}
 		}
 		
+		super.paintBorder();
+		
 		glPopMatrix();
 	}
 
@@ -107,7 +109,7 @@ public class IconList extends List {
 	@Override
 	public boolean isInComponent(int x, int y) {
 		return (x > centerX - sizeX / 2 && x < centerX + sizeX / 2 - SLIDER_WIDTH)
-		&& (y > centerY - sizeY / 2 && y < centerY + sizeY / 2);
+		&& (Display.getHeight() - y > centerY - sizeY / 2 && Display.getHeight() - y < centerY + sizeY / 2);
 	}
 
 	@Override

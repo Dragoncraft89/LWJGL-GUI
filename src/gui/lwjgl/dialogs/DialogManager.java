@@ -27,7 +27,7 @@ public class DialogManager {
 	
 	public void openDialog(Dialog dialog) {
 		activeDialogs.push(dialog);
-		dialog.openDialog(this);
+		dialog.open(this);
 	}
 	
 	public void paint() {
@@ -71,7 +71,7 @@ public class DialogManager {
 	
 	public void setOverlay(GUI gui) {
 		this.overlay = gui;
-		gui.open();
+		gui.open(this);
 	}
 	
 	public void dispatchEvents() {

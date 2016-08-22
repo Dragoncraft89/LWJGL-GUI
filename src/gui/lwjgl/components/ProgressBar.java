@@ -33,7 +33,7 @@ public class ProgressBar extends Component {
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		
-		int d = maxValue - minValue + 1;
+		int d = maxValue - minValue;
 		float posX = sizeX / (float) d;
 		float posY = sizeY / (float) d;
 

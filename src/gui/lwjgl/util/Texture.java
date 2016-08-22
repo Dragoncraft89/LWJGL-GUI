@@ -100,6 +100,21 @@ public final class Texture {
         return tex;
 	}
 	
+	public static Texture createTextureFromPackage(String packageName) throws IOException {
+		Texture tex = textures.get(packageName);
+		
+		if (tex != null) {
+            return tex;
+        }
+        BufferedImage bufferedImage = ImageIO.read(Texture.class.getResourceAsStream("/" + packageName.replace('.', '/')));
+ 
+        tex = createTextureFromImage(bufferedImage);
+ 
+        textures.put(packageName,tex);
+ 
+        return tex;
+	}
+	
 	private static int get2Fold(int fold) {
         int ret = 2;
         while (ret < fold) {

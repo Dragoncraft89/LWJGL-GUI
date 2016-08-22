@@ -17,14 +17,14 @@ public class IconLessList extends List {
 	
 	protected void paintElement(int heightPerElement, int offset, int y, int i) {
 		glPushMatrix();
-		glTranslatef(centerX - sizeX / 2, y, 0);
+		glTranslatef(0, y, 0);
 		
 		bindTexture();
 		glBegin(GL_QUADS);
 		if (i == selected)
-			glColor4f(background_r, background_g, background_b, background_a);
+			glColor4f(list_r, list_g, list_b, list_a);
 		else
-			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
+			glColor4f(background_r, background_g, background_b, background_a);
 		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);
 		glTexCoord2f(1, 0);

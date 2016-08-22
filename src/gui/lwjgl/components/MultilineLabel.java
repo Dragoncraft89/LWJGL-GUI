@@ -5,7 +5,9 @@ import static org.lwjgl.opengl.GL11.*;
 import gui.lwjgl.style.StyleTemplate;
 
 public class MultilineLabel extends Label {
-	private static int SPACE_BETWEEN_LINES = 5;
+	private static int SPACE_BETWEEN_LINES = -2;
+	
+	private static int padding = 5;
 
 	private Slider slider;
 
@@ -15,11 +17,12 @@ public class MultilineLabel extends Label {
 		setText(text);
 		
 		addToGroup("multiline");
+		slider.addToGroup("multiline");
 	}
 
 	public void setText(String text) {
 		this.text = text;
-		slider.setMaxValue(Math.max(0, (int) Math.ceil(getLines(text) - ((float) sizeY / (font.getHeight() + 5)))));
+		slider.setMaxValue(Math.max(0, (int) Math.ceil(getLines(text) - ((float) sizeY / (font.getHeight() + SPACE_BETWEEN_LINES)))));
 	}
 	
 	public void setSliderBackgroundColor(float r, float g, float b, float a) {
@@ -51,7 +54,6 @@ public class MultilineLabel extends Label {
 	}
 
 	public void paint(float delta) {
-		slider.paint(delta);
 		
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
@@ -70,37 +72,38 @@ public class MultilineLabel extends Label {
 		drawText();
 		
 		glPopMatrix();
+		slider.paint(delta);
 	}
 	
 	private void drawText() {
-		int y = 0;
-		int posX = 0;
+		int y = padding;
+		int posX = padding;
 
 		int offset = slider.getValue();
 		for (String s : text.split("\n")) {
 			s = s.replace("\r", "");
 			for (String d : s.split(" ")) {
-				if (posX + font.getWidth(d) > sizeX) {
-					posX = 0;
+				if (posX + font.getWidth(d) > sizeX - padding) {
+					posX = padding;
 					if (offset != 0) {
 						offset--;
 						continue;
 					}
 					y += font.getHeight(s) + SPACE_BETWEEN_LINES;
-					if (y > sizeY)
+					if (y + font.getHeight() > sizeY - padding)
 						return;
 				}
 				if (offset == 0)
 					font.drawString(d, posX, y, text_r, text_g, text_b, text_a);
 				posX += font.getWidth(d + " ");
 			}
-			posX = 0;
+			posX = padding;
 			if (offset != 0) {
 				offset--;
 				continue;
 			}
 			y += font.getHeight(s) + SPACE_BETWEEN_LINES;
-			if (y > sizeY)
+			if (y + font.getHeight() > sizeY - padding)
 				return;
 		}
 	}

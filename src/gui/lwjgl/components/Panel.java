@@ -81,7 +81,7 @@ public class Panel extends Component {
 			if (components.get(i).mouseDown(gui, button, x, y))
 				return true;
 		}
-		return super.mouseDown(gui, button, x, y);
+		return super.mouseDown(gui, button, x + centerX - sizeX / 2, y - centerY + sizeY / 2);
 	}
 
 	@Override

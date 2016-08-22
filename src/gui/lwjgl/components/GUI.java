@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
 
+import gui.lwjgl.dialogs.DialogManager;
 import gui.lwjgl.style.StyleManager;
 import gui.lwjgl.style.StyleTemplate;
 
@@ -27,7 +28,7 @@ public class GUI {
 		}
 	}
 
-	public void open() {
+	public void open(DialogManager manager) {
 		loadTemplate(StyleManager.getTemplate());
 		
 		for (Component c : components) {

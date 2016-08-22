@@ -1,32 +1,54 @@
 all {
-	background-color: rgb(100, 100, 100);
-	foreground-color: #888888;
-	text-color: rgba(256, 256, 256, 256);
-	border-color: red;
+	background-color: white;
+	foreground-color: grey;
+	text-color: black;
+	border-color: black;
+	draw-border: false;
+}
+
+panels {
+	background-color: #dddddd;
+}
+
+textfields {
+	background-color: #ffffff;
 	draw-border: true;
+}
+
+labels {
+	background-color: #00000000;
 }
 
 buttons {
 	background-color: #006600;
 	foreground-color: #009900;
+	draw-border: true;
+}
+
+lists {
+	list-color: #aaaaaa;
+	draw-border: true;
+}
+
+progressbars {
+	draw-border: true;
+	foreground-color: #0000aa;
+}
+
+slider {
+	draw-border: true;
+	foreground-color: #0000aa;
 }
 
 windows {
-	background-color: #000055;
+	draw-border: true;
 }
 
-panels {
-	background-color: #444444;
-}
-
-windows.panels {
-	background-color: #000000;
+windows.labels {
+	background-color: #0088dd;
 }
 
 multiline {
-	background-color: #333333;
-}
-
-throbbers {
-	draw-border: false;
+	background-color: #ffffff;
+	draw-border: true;
 }

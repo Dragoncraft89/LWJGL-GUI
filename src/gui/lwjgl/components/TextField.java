@@ -71,7 +71,7 @@ public class TextField extends Component {
 		int size = font.getWidth(value.substring(firstChar, cursorPos)) + padding;
 		
 		glBegin(GL_QUADS);
-		glColor3f(1, 1, 1);
+		glColor4f(text_r, text_g, text_b, text_a);
 		glVertex2f(size - cursorWidth / 2f, 0);
 		glVertex2f(size - cursorWidth / 2f, sizeY);
 		glVertex2f(size + cursorWidth / 2f, sizeY);

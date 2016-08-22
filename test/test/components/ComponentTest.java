@@ -37,20 +37,15 @@ public class ComponentTest extends Test {
 				return "Test";
 			}}};
 		IconLessList icllist = new IconLessList(110, 145, 200, 150, 5, elements);
-		IconList ilist = new IconList(310, 145, 200, 150, 5, elements);
+		IconList ilist = new IconList(320, 145, 200, 150, 5, elements);
 		Label label = new Label(320, 35, 200, 50, "Label");
-		List list = new List(510, 145, 200, 150, 5, elements);
+		List list = new List(530, 145, 200, 150, 5, elements);
 		MultilineLabel multiline = new MultilineLabel(110, 305, 200, 150, "1\n2\n3\n4\n5\n6\n7\n8");
-		ProgressBar progressbar = new ProgressBar(310, 305, 200, 150, true);
-		Slider slider = new Slider(520, 305, 200, 150, true, 0, 100);
+		ProgressBar progressbar = new ProgressBar(320, 305, 200, 150, true, 0, 2);
+		progressbar.setValue(1);
+		Slider slider = new Slider(530, 305, 200, 150, true, 0, 100);
 		TextField textfield = new TextField(110, 415, 200, 50);
-		Throbber throbber = null;
-		try {
-			throbber = new Throbber(320, 415, 50, 50, Texture.createTextureFromFile("test.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+		Throbber throbber = new Throbber(320, 415, 50, 50);
 		
 		center.addComponent(button);
 		center.addComponent(label);

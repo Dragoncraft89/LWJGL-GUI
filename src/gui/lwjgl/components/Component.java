@@ -198,7 +198,7 @@ public abstract class Component {
 			return false;
 		}
 		
-		if(isInComponent(x, y)) {
+		if(button == 0 && isInComponent(x, y)) {
 			fireEvent(x, y, ClickEventListener.PRESSED);
 			return true;
 		}
@@ -211,7 +211,7 @@ public abstract class Component {
 			return false;
 		}
 		
-		if(isInComponent(x, y)) {
+		if(button == 0 && isInComponent(x, y)) {
 			fireEvent(x, y, ClickEventListener.RELEASED);
 			return true;
 		}

@@ -99,6 +99,7 @@ public class Window extends Component {
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
 		
+		label.loadTemplate(style);
 		contentPane.loadTemplate(style);
 	}
 

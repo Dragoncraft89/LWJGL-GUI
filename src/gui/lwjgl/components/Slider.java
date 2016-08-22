@@ -50,9 +50,9 @@ public class Slider extends Component {
 		if (!isEditable())
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
 		glVertex2f(0, 0);
-		glVertex2f(0, sizeY);
-		glVertex2f(sizeX, sizeY);
 		glVertex2f(sizeX, 0);
+		glVertex2f(sizeX, sizeY);
+		glVertex2f(0, sizeY);
 
 		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())

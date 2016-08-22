@@ -96,7 +96,7 @@ public class CSSParser {
 		case "foreground-color":style.setForegroundColor(parseColor(value));break;
 		case "text-color":style.setTextColor(parseColor(value));break;
 		case "border-color":style.setBorderColor(parseColor(value));break;
-		case "list-color":style.setListColor(parseColor(value));
+		case "list-color":style.setListColor(parseColor(value));break;
 		case "draw-border":style.setDrawBorder(asBoolean(value));break;
 		}
 	}

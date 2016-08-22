@@ -6,20 +6,22 @@ import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.Texture;
 
 public class Throbber extends Component {
-
-	private Texture tex;
-	
 	private double rotation;
 	
 	private double rotationAmplifier = 1;
 	
 	private boolean paused;
 
-	public Throbber(int centerX, int centerY, int sizeX, int sizeY, Texture tex) {
+	public Throbber(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX, centerY, sizeX, sizeY);
-		this.tex = tex;
 		
 		addToGroup("throbbers");
+	}
+	
+	public Throbber(int centerX, int centerY, int sizeX, int sizeY, Texture tex) {
+		this(centerX, centerY, sizeX, sizeY);
+		
+		setTexture(tex);
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class Throbber extends Component {
 		glPushMatrix();
 		glTranslatef(centerX, centerY, 0);
 		
-		tex.bind();
+		super.bindTexture();
 		
 		if(!paused)
 			rotation += delta * rotationAmplifier * 10;

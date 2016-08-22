@@ -26,7 +26,10 @@ public class List extends Component {
 
 	protected int selected;
 	
-	private float list_r, list_g, list_b, list_a;
+	protected float list_r;
+	protected float list_g;
+	protected float list_b;
+	protected float list_a;
 
 	public List(int centerX, int centerY, int sizeX, int sizeY, int elementsVisible) {
 		super(centerX, centerY, sizeX, sizeY);
@@ -37,6 +40,8 @@ public class List extends Component {
 		panel.addComponent(slider);
 		setElements(new ListElement[1]);
 		
+		panel.addToGroup("lists");
+		slider.addToGroup("lists");
 		addToGroup("lists");
 	}
 	
@@ -76,26 +81,31 @@ public class List extends Component {
 		panel.paint(delta);
 		glBindTexture(GL_TEXTURE_2D, 0);
 
+		glPushMatrix();
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		int heightPerElement = this.sizeY / elementsVisible;
 		int offset = slider.getValue();
-		int y = centerY - sizeY / 2;
+		int y = 0;
 		for (int i = offset; i < offset + elementsVisible; i++) {
 			if (i < elements.length && elements[i] != null) {
 				paintElement(heightPerElement, offset, y, i);
 			}
 			y += heightPerElement;
 		}
+		
+		super.paintBorder();
+		glPopMatrix();
 	}
 
 	protected void paintElement(int heightPerElement, int offset, int y, int i) {
 		glPushMatrix();
-		glTranslatef(centerX - sizeX / 2, y, 0);
+		glTranslatef(0, y, 0);
 		
 		glBegin(GL_QUADS);
 		if (i == selected)
 			glColor4f(list_r, list_g, list_b, list_a);
 		else
-			glColor4f(list_r * 0.5f, list_g * 0.5f, list_b * 0.5f, list_a);
+			glColor4f(background_r, background_g, background_b, background_a);
 		glVertex2f(1, 1);
 		glVertex2f(sizeX - SLIDER_WIDTH, 1);
 		glVertex2f(sizeX - SLIDER_WIDTH, heightPerElement - 1);
