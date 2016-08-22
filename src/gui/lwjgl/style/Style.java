@@ -3,75 +3,99 @@ package gui.lwjgl.style;
 import gui.lwjgl.util.Texture;
 
 public class Style {
-	private float[] backgroundColor = {-1, -1, -1, -1};
-	private float[] foregroundColor = {-1, -1, -1, -1};
-	private float[] textColor = {-1, -1, -1, -1};
-	private float[] borderColor = {-1, -1, -1, -1};
+	private Value<float[]> backgroundColor = new Value<float[]>();
+	private Value<float[]> foregroundColor = new Value<float[]>();
+	private Value<float[]> textColor = new Value<float[]>();
+	private Value<float[]> borderColor = new Value<float[]>();
+	private Value<float[]> listColor = new Value<float[]>();
 	
-	private float[] listColor = {-1, -1, -1, -1};
+	private Value<Boolean> drawBorder = new Value<Boolean>();
 	
-	private Texture texture;
+	private Value<Texture> texture = new Value<Texture>();
 	
 	public void setBackgroundColor(float r, float g, float b, float a) {
-		backgroundColor[0] = r;
-		backgroundColor[1] = g;
-		backgroundColor[2] = b;
-		backgroundColor[3] = a;
+		float[] backgroundColor = {r, g, b, a};
+		
+		setBackgroundColor(backgroundColor);
+	}
+	
+	public void setBackgroundColor(float[] color) {
+		this.backgroundColor.setValue(color);
 	}
 	
 	public void setForegroundColor(float r, float g, float b, float a) {
-		foregroundColor[0] = r;
-		foregroundColor[1] = g;
-		foregroundColor[2] = b;
-		foregroundColor[3] = a;
+		float[] foregroundColor = {r, g, b, a};
+		
+		setForegroundColor(foregroundColor);
+	}
+
+	public void setForegroundColor(float[] foregroundColor) {
+		this.foregroundColor.setValue(foregroundColor);
 	}
 
 	public void setTextColor(float r, float g, float b, float a) {
-		textColor[0] = r;
-		textColor[1] = g;
-		textColor[2] = b;
-		textColor[3] = a;
+		float[] textColor = {r, g, b, a};
+		
+		setTextColor(textColor);
+	}
+
+	public void setTextColor(float[] textColor) {
+		this.textColor.setValue(textColor);
 	}
 
 	public void setBorderColor(float r, float g, float b, float a) {
-		borderColor[0] = r;
-		borderColor[1] = g;
-		borderColor[2] = b;
-		borderColor[3] = a;
+		float[] borderColor = {r, g, b, a};
+		
+		setBorderColor(borderColor);
+	}
+
+	public void setBorderColor(float[] borderColor) {
+		this.borderColor.setValue(borderColor);
 	}
 
 	public void setListColor(float r, float g, float b, float a) {
-		listColor[0] = r;
-		listColor[1] = g;
-		listColor[2] = b;
-		listColor[3] = a;
+		float[] listColor = {r, g, b, a};
+		
+		setListColor(listColor);
+	}
+	
+	public void setListColor(float[] listColor) {
+		this.listColor.setValue(listColor);
+	}
+
+	public void setDrawBorder(boolean drawBorder) {
+		this.drawBorder.setValue(drawBorder);
 	}
 	
 	public void setTexture(Texture texture) {
-		this.texture = texture;
+		this.texture.setValue(texture);
 	}
 
-	public float[] getBackgroundColor() {
+	public Value<float[]> getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public float[] getForegroundColor() {
+	public Value<float[]> getForegroundColor() {
 		return foregroundColor;
 	}
 
-	public float[] getTextColor() {
+	public Value<float[]> getTextColor() {
 		return textColor;
 	}
 
-	public float[] getBorderColor() {
+	public Value<float[]> getBorderColor() {
 		return borderColor;
 	}
 	
-	public float[] getListColor() {
+	public Value<float[]> getListColor() {
 		return listColor;
 	}
 
-	public Texture getTexture() {
+	public Value<Boolean> getDrawBorder() {
+		return drawBorder;
+	}
+
+	public Value<Texture> getTexture() {
 		return texture;
 	}
 }

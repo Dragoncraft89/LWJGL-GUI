@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class Window extends Component {
 
 	private int offsetX;
@@ -93,6 +95,11 @@ public class Window extends Component {
 		x += offsetX;
 		y += offsetY;
 		return contentPane.mouseMoved(gui, x, y, dX, dY) || super.mouseMoved(gui, x, y, dX, dY);
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 
 }

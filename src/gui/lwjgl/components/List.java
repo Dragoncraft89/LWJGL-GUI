@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 
 import gui.lwjgl.listener.SelectionListener;
+import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Texture;
 
@@ -204,5 +205,10 @@ public class List extends Component {
 		}
 
 		font.drawString(s, leftX, leftY - font.getHeight() / 2, r, g, b, a);
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

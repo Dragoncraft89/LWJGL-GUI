@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
 
+import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.Texture;
 
 public class IconList extends List {
@@ -107,5 +108,10 @@ public class IconList extends List {
 	public boolean isInComponent(int x, int y) {
 		return (x > centerX - sizeX / 2 && x < centerX + sizeX / 2 - SLIDER_WIDTH)
 		&& (y > centerY - sizeY / 2 && y < centerY + sizeY / 2);
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

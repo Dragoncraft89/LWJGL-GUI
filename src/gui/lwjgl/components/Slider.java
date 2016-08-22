@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 
 import gui.lwjgl.listener.ChangeEventListener;
+import gui.lwjgl.style.StyleTemplate;
 
 public class Slider extends Component {
 	private static final int MINIMAL_SIZE = 5;
@@ -170,5 +171,10 @@ public class Slider extends Component {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

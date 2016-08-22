@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class Button extends Component {
 	private String name;
 
@@ -58,6 +60,11 @@ public class Button extends Component {
 
 	public void setText(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 
 }

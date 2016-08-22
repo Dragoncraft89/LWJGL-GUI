@@ -16,7 +16,7 @@ public class GUI {
 	protected ArrayList<Component> components = new ArrayList<Component>();
 
 	public GUI() {
-		loadTemplate(StyleManager.getDefaultTemplate());
+		loadTemplate(StyleManager.getTemplate());
 	}
 	
 	public GUI(StyleTemplate template) {

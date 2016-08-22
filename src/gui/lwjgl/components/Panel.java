@@ -4,6 +4,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class Panel extends Component {
 	ArrayList<Component> components = new ArrayList<Component>();
 
@@ -122,4 +124,11 @@ public class Panel extends Component {
 		return super.mouseMoved(gui, x, y, dX, dY);
 	}
 
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
+		
+		for(int i = 0; i < components.size(); i++) {
+			components.get(i).loadTemplate(style);
+		}
+	}
 }

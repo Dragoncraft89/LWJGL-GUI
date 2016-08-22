@@ -2,6 +2,7 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.Texture;
 
 public class Throbber extends Component {
@@ -63,5 +64,10 @@ public class Throbber extends Component {
 
 	public boolean isPaused() {
 		return paused;
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class Label extends Component {
 
 	protected String text;
@@ -39,5 +41,10 @@ public class Label extends Component {
 
 		super.drawString(font, text, sizeX / 2, sizeY / 2, text_r, text_g, text_b, text_a);
 		glPopMatrix();
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class ProgressBar extends Component {
 
 	private boolean horizontal;
@@ -78,5 +80,10 @@ public class ProgressBar extends Component {
 
 	public void setValue(int value) {
 		this.value = value;
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

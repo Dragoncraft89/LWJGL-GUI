@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 
 import gui.lwjgl.listener.KeyEventListener;
+import gui.lwjgl.style.StyleTemplate;
 
 public class TextField extends Component {
 	private StringBuilder value = new StringBuilder();
@@ -174,5 +175,10 @@ public class TextField extends Component {
 		}
 		
 		cursorPos = value.length();
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }

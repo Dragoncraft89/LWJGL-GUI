@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class MultilineLabel extends Label {
 	private static int SPACE_BETWEEN_LINES = 5;
 
@@ -135,6 +137,11 @@ public class MultilineLabel extends Label {
 		}
 
 		return slider.mouseWheelChanged(gui, mouseWheel, x, y) || super.mouseWheelChanged(gui, mouseWheel, x, y);
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 
 }

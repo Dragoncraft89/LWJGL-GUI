@@ -65,6 +65,10 @@ public abstract class Component {
 	public void removeFromGroup(String group) {
 		groups.remove(group);
 	}
+
+	public boolean hasGroup(String s) {
+		return groups.contains(s);
+	}
 	
 	public String[] getGroups() {
 		return groups.toArray(new String[groups.size()]);
@@ -273,21 +277,5 @@ public abstract class Component {
 		return parent;
 	}
 
-	public void loadTemplate(StyleTemplate style) {
-		for(String s:groups) {
-			float[] background = style.getBackgroundColor(s);
-			float[] foreground = style.getForegroundColor(s);
-			float[] text = style.getTextColor(s);
-			float[] border = style.getBorderColor(s);
-			
-			Texture tex = style.getTexture(s);
-			
-			setBackgroundColor(background[0], background[1], background[2], background[3]);
-			setForegroundColor(foreground[0], foreground[1], foreground[2], foreground[3]);
-			setTextColor(text[0], text[1], text[2], text[3]);
-			setBorderColor(border[0], border[1], border[2], border[3]);
-			
-			setTexture(tex);
-		}
-	}
+	public abstract void loadTemplate(StyleTemplate style);
 }

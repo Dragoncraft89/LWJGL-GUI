@@ -2,6 +2,8 @@ package gui.lwjgl.components;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import gui.lwjgl.style.StyleTemplate;
+
 public class IconLessList extends List {
 
 	public IconLessList(int centerX, int centerY, int sizeX, int sizeY, int elementsVisible) {
@@ -37,5 +39,10 @@ public class IconLessList extends List {
 		super.drawString(font, name, PADDING_LEFT,
 				heightPerElement / 2, text_r, text_g, text_b, text_a);
 		glPopMatrix();
+	}
+
+	@Override
+	public void loadTemplate(StyleTemplate style) {
+		style.load(this);
 	}
 }
