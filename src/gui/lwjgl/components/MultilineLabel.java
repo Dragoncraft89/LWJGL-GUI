@@ -54,6 +54,7 @@ public class MultilineLabel extends Label {
 	}
 
 	public void paint(float delta) {
+		slider.paint(delta);
 		
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
@@ -72,7 +73,6 @@ public class MultilineLabel extends Label {
 		drawText();
 		
 		glPopMatrix();
-		slider.paint(delta);
 	}
 	
 	private void drawText() {
@@ -145,6 +145,8 @@ public class MultilineLabel extends Label {
 	@Override
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
+		
+		slider.loadTemplate(style);
 	}
 
 }

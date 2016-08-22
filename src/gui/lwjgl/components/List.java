@@ -32,11 +32,11 @@ public class List extends Component {
 	protected float list_a;
 
 	public List(int centerX, int centerY, int sizeX, int sizeY, int elementsVisible) {
-		super(centerX, centerY, sizeX, sizeY);
+		super(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
 		this.elementsVisible = elementsVisible;
 		this.elements = new ListElement[0];
-		this.panel = new Panel(centerX, centerY, sizeX, sizeY);
-		this.slider = new Slider(centerX + sizeX / 2 - 5, centerY, SLIDER_WIDTH, sizeY, false);
+		this.panel = new Panel(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
+		this.slider = new Slider(sizeX, sizeY / 2, SLIDER_WIDTH, sizeY, false);
 		panel.addComponent(slider);
 		setElements(new ListElement[1]);
 		
@@ -79,7 +79,6 @@ public class List extends Component {
 	@Override
 	public void paint(float delta) {
 		panel.paint(delta);
-		glBindTexture(GL_TEXTURE_2D, 0);
 
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
@@ -217,5 +216,7 @@ public class List extends Component {
 	@Override
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
+		
+		panel.loadTemplate(style);
 	}
 }

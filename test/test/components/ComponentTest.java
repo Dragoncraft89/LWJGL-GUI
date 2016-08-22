@@ -19,7 +19,7 @@ public class ComponentTest extends Test {
 		
 		Button button = new Button(110, 35, 200, 50, "Button");
 		
-		ListElement[] elements = new ListElement[]{new ListElement(){
+		ListElement l = new ListElement(){
 
 			@Override
 			public Texture getIcon() {
@@ -35,22 +35,20 @@ public class ComponentTest extends Test {
 			@Override
 			public String getName() {
 				return "Test";
-			}}};
-		IconLessList icllist = new IconLessList(110, 145, 200, 150, 5, elements);
-		IconList ilist = new IconList(320, 145, 200, 150, 5, elements);
+			}};
+		
+		ListElement[] elements = new ListElement[]{l,l,l,l,l,l,l,l,l,l,l,l,l,l,l};
 		Label label = new Label(320, 35, 200, 50, "Label");
-		List list = new List(530, 145, 200, 150, 5, elements);
-		MultilineLabel multiline = new MultilineLabel(110, 305, 200, 150, "1\n2\n3\n4\n5\n6\n7\n8");
-		ProgressBar progressbar = new ProgressBar(320, 305, 200, 150, true, 0, 2);
+		List list = new List(110, 145, 200, 150, 5, elements);
+		MultilineLabel multiline = new MultilineLabel(320, 145, 200, 150, "1\n2\n3\n4\n5\n6\n7\n8");
+		ProgressBar progressbar = new ProgressBar(110, 305, 200, 150, true, 0, 2);
 		progressbar.setValue(1);
-		Slider slider = new Slider(530, 305, 200, 150, true, 0, 100);
+		Slider slider = new Slider(320, 305, 200, 150, true, 0, 100);
 		TextField textfield = new TextField(110, 415, 200, 50);
 		Throbber throbber = new Throbber(320, 415, 50, 50);
 		
 		center.addComponent(button);
 		center.addComponent(label);
-		center.addComponent(icllist);
-		center.addComponent(ilist);
 		center.addComponent(list);
 		center.addComponent(multiline);
 		center.addComponent(progressbar);
