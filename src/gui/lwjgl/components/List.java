@@ -127,6 +127,8 @@ public class List extends Component {
 			drawString(font, name, PADDING_LEFT,
 					heightPerElement / 2, text_r, text_g, text_b, text_a);
 		}
+		
+		glPopMatrix();
 	}
 
 	@Override

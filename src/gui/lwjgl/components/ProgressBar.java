@@ -52,12 +52,12 @@ public class ProgressBar extends Component {
 		if (horizontal) {
 			glVertex2f(0, 0);
 			glVertex2f(0, sizeY);
-			glVertex2f((value + 1) * posX, sizeY);
-			glVertex2f((value + 1) * posX, 0);
+			glVertex2f((value) * posX, sizeY);
+			glVertex2f((value) * posX, 0);
 		} else {
 			glVertex2f(0, 0);
-			glVertex2f(0, (value + 1) * posY);
-			glVertex2f(sizeX, (value + 1) * posY);
+			glVertex2f(0, (value) * posY);
+			glVertex2f(sizeX, (value) * posY);
 			glVertex2f(sizeX, 0);
 		}
 		glEnd();

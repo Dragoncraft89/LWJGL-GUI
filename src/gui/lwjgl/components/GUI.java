@@ -16,11 +16,9 @@ public class GUI {
 	protected ArrayList<Component> components = new ArrayList<Component>();
 
 	public GUI() {
-		loadTemplate(StyleManager.getTemplate());
 	}
 	
 	public GUI(StyleTemplate template) {
-		loadTemplate(template);
 	}
 	
 	public void loadTemplate(StyleTemplate template) {
@@ -30,6 +28,8 @@ public class GUI {
 	}
 
 	public void open() {
+		loadTemplate(StyleManager.getTemplate());
+		
 		for (Component c : components) {
 			c.onDisplay(this);
 		}
@@ -48,6 +48,7 @@ public class GUI {
 			components.get(i).paint(delta);
 		}
 		glEnable(GL_DEPTH_TEST);
+		glColor3f(1, 1, 1);
 	}
 
 	public void requestFocus(Component c) {

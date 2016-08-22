@@ -25,7 +25,7 @@ public class Throbber extends Component {
 	@Override
 	public void paint(float delta) {
 		glPushMatrix();
-		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
+		glTranslatef(centerX, centerY, 0);
 		
 		tex.bind();
 		
@@ -33,6 +33,8 @@ public class Throbber extends Component {
 			rotation += delta * rotationAmplifier * 10;
 
 		glRotated(rotation, 0, 0, 1);
+		
+		glTranslatef(-sizeX/2, -sizeY/2, 0);
 		
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);

@@ -20,9 +20,9 @@ public class Window extends Component {
 
 		this.label = new Label(centerX, centerY - sizeY / 2 + 12, sizeX, 25, title);
 		
-		addToGroup("window");
-		label.addToGroup("window");
-		contentPane.addToGroup("window");
+		addToGroup("windows");
+		label.addToGroup("windows");
+		contentPane.addToGroup("windows");
 	}
 	
 	public Panel getContentPane() {
@@ -99,7 +99,6 @@ public class Window extends Component {
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
 		
-		label.loadTemplate(style);
 		contentPane.loadTemplate(style);
 	}
 

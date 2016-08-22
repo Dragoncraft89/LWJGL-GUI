@@ -1,9 +1,13 @@
 package gui.lwjgl.dialogs;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.util.Stack;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.util.glu.GLU;
 
 import gui.lwjgl.components.GUI;
 import gui.lwjgl.listener.EventCallBack;
@@ -27,12 +31,37 @@ public class DialogManager {
 	}
 	
 	public void paint() {
-		if(overlay != null)
+		guiMatrix();
+		if(overlay != null);
 			overlay.paint();
 		
 		for(int i = 0; i < activeDialogs.size(); i++) {
 			activeDialogs.get(i).paint();
 		}
+		popGUIMatrix();
+	}
+	
+	private void guiMatrix() {
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+		glDisable(GL_DEPTH_TEST);
+		GLU.gluOrtho2D(0, Display.getWidth(), Display.getHeight(), 0);
+		glMatrixMode(GL_MODELVIEW);
+		glEnable(GL_COLOR_MATERIAL);
+		glPushMatrix();
+		glLoadIdentity();
+	}
+	
+	private void popGUIMatrix() {
+    	glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
 	}
 	
 	public void placeOnTop(Dialog dialog) {
@@ -42,6 +71,7 @@ public class DialogManager {
 	
 	public void setOverlay(GUI gui) {
 		this.overlay = gui;
+		gui.open();
 	}
 	
 	public void dispatchEvents() {

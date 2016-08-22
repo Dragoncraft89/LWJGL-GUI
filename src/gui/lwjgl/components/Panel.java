@@ -75,7 +75,7 @@ public class Panel extends Component {
 	@Override
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
 		x -= centerX - sizeX / 2;
-		y -= centerY - sizeY / 2;
+		y += centerY - sizeY / 2;
 		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseDown(gui, button, x, y))
@@ -87,7 +87,7 @@ public class Panel extends Component {
 	@Override
 	public boolean mouseUp(GUI gui, int button, int x, int y) {
 		x -= centerX - sizeX / 2;
-		y -= centerY - sizeY / 2;
+		y += centerY - sizeY / 2;
 		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseUp(gui, button, x, y))
@@ -99,7 +99,7 @@ public class Panel extends Component {
 	@Override
 	public boolean mouseWheelChanged(GUI gui, int mouseWheel, int x, int y) {
 		x -= centerX - sizeX / 2;
-		y -= centerY - sizeY / 2;
+		y += centerY - sizeY / 2;
 		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseWheelChanged(gui, mouseWheel, x, y))
@@ -111,7 +111,7 @@ public class Panel extends Component {
 	@Override
 	public boolean mouseMoved(GUI gui, int x, int y, int dX, int dY) {
 		x -= centerX - sizeX / 2;
-		y -= centerY - sizeY / 2;
+		y += centerY - sizeY / 2;
 		
 		for (int i = 0; i < components.size(); i++) {
 			if (components.get(i).mouseMoved(gui, x, y, dX, dY))

@@ -51,10 +51,11 @@ public class MultilineLabel extends Label {
 	}
 
 	public void paint(float delta) {
+		slider.paint(delta);
+		
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		
-		slider.paint(delta);
 
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
@@ -65,7 +66,13 @@ public class MultilineLabel extends Label {
 		glEnd();
 		
 		super.paintBorder();
-
+		
+		drawText();
+		
+		glPopMatrix();
+	}
+	
+	private void drawText() {
 		int y = 0;
 		int posX = 0;
 
@@ -93,11 +100,9 @@ public class MultilineLabel extends Label {
 				continue;
 			}
 			y += font.getHeight(s) + SPACE_BETWEEN_LINES;
-			if (y > sizeY / 2 - font.getHeight())
+			if (y > sizeY)
 				return;
 		}
-		
-		glPopMatrix();
 	}
 
 	@Override

@@ -21,6 +21,7 @@ public class StyleTemplateFactory {
 	}
 
 	public static StyleTemplate loadDefaultStyle(String style) throws IOException, ParsingException {
-		return loadFromStream(StyleTemplateFactory.class.getResourceAsStream("asset/" + style.replace('.', '/') + "style.css"));
+		String path = "/asset/" + style.replace('.', '/') + "/style.css";
+		return loadFromStream(StyleTemplateFactory.class.getResourceAsStream(path));
 	}
 }

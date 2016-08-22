@@ -1,11 +1,32 @@
 all {
-	background-color: rgb(51, 51, 51);
+	background-color: rgb(100, 100, 100);
 	foreground-color: #888888;
 	text-color: rgba(256, 256, 256, 256);
-	border-color: #000000;
+	border-color: red;
 	draw-border: true;
 }
 
-progressbars {
+buttons {
+	background-color: #006600;
+	foreground-color: #009900;
+}
+
+windows {
+	background-color: #000055;
+}
+
+panels {
+	background-color: #444444;
+}
+
+windows.panels {
+	background-color: #000000;
+}
+
+multiline {
+	background-color: #333333;
+}
+
+throbbers {
 	draw-border: false;
 }

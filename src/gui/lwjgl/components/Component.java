@@ -178,11 +178,11 @@ public abstract class Component {
 		if(r != -1)
 			this.border_r = r;
 		if(g != -1)
-			this.border_g = r;
+			this.border_g = g;
 		if(b != -1)
-			this.border_b = r;
+			this.border_b = b;
 		if(a != -1)
-			this.border_a = r;
+			this.border_a = a;
 	}
 
 	public boolean keyUp(GUI gui, int eventKey, char character) {
@@ -240,7 +240,7 @@ public abstract class Component {
 			return;
 		
 		glBegin(GL_LINES);
-		glColor4f(border_r, border_g, border_b, 1);
+		glColor4f(border_r, border_g, border_b, border_a);
 		glVertex2f(0, 0);
 		glVertex2f(sizeX, 0);
 		

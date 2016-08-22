@@ -2,18 +2,21 @@ package gui.lwjgl.style;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class CSSParser {
 	
 	private InputStream stream;
 
 	public CSSParser(InputStream stream) {
+		if(stream == null)
+			throw new IllegalArgumentException("stream is null");
+		
 		this.stream = stream;
 	}
 	
-	public HashMap<String, Style> parse() throws ParsingException, IOException {
-		HashMap<String, Style> rules = new HashMap<String, Style>();
+	public LinkedHashMap<String, Style> parse() throws ParsingException, IOException {
+		LinkedHashMap<String, Style> rules = new LinkedHashMap<String, Style>();
 		
 		int depth = 0;
 		int line = 1;
@@ -57,22 +60,24 @@ public class CSSParser {
 						}
 						insertAttrib(style, attribName, value);
 						attribName = "";
+						value = "";
 						side = false;
 						break;
 					 }
 			case ':':side = true;break;
-			case '\n':line++; //line gets incremented and \n is processed in default:
+			case '\r':break;
+			case '\n':line++;break;
 			default:{
 						if(depth == 0) {
-							selectorName += c;
+							selectorName += (char)c;
 						}
 						if(depth == 1) {
 							if(side) {
 								//We're reading the value
-								value += c;
+								value += (char)c;
 							} else {
 								//We're reading the attribute name
-								attribName += c;
+								attribName += (char)c;
 							}
 						}
 					}
@@ -97,7 +102,7 @@ public class CSSParser {
 	}
 
 	private void throwExceptionOnToken(int c, int line) throws ParsingException{
-		throw new ParsingException("Invalid token: \'" + c + "\' on line " + line);
+		throw new ParsingException("Invalid token: \'" + (char)c + "\' on line " + line);
 	}
 	
 	private boolean asBoolean(String s) throws ParsingException {

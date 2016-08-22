@@ -11,15 +11,17 @@ public class CSSColorUtils {
 	private static HashMap<String, float[]> colors = new HashMap<String, float[]>();
 
 	static {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(CSSColorUtils.class.getResourceAsStream("asset/colorNames.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(CSSColorUtils.class.getResourceAsStream("/asset/colorNames.txt")));
 		
 		try {
-			String line = reader.readLine();
+			String line = "";
 			
-			String name = line.split(" ")[0];
-			String color = line.split(" ")[1];
-			
-			colors.put(name, CSSColorUtils.decodeHexRGBColor(color));
+			while((line = reader.readLine()) != null) {
+				String name = line.split(" ")[0];
+				String color = line.split(" ")[1];
+				
+				colors.put(name, CSSColorUtils.decodeHexRGBColor(color));
+			}
 			
 			reader.close();
 		} catch (IOException e) {
@@ -38,47 +40,47 @@ public class CSSColorUtils {
 	}
 	
 	public static float[] decodeHexRGBColor(String color) {
-		float red = Integer.parseInt(color.substring(1, 3), 16) / 256f;
-		float green = Integer.parseInt(color.substring(3, 5), 16) / 256f;
-		float blue = Integer.parseInt(color.substring(5, 7), 16) / 256f;
+		float red = Integer.parseInt(color.substring(1, 3), 16) / 255f;
+		float green = Integer.parseInt(color.substring(3, 5), 16) / 255f;
+		float blue = Integer.parseInt(color.substring(5, 7), 16) / 255f;
 		
 		return new float[]{red, green, blue, 1};
 	}
 
 	public static float[] decodeHexRGBAColor(String color) {
-		float red = Integer.parseInt(color.substring(1, 3), 16) / 256f;
-		float green = Integer.parseInt(color.substring(3, 5), 16) / 256f;
-		float blue = Integer.parseInt(color.substring(5, 7), 16) / 256f;
-		float alpha = Integer.parseInt(color.substring(7, 9), 16) / 256f;
+		float red = Integer.parseInt(color.substring(1, 3), 16) / 255f;
+		float green = Integer.parseInt(color.substring(3, 5), 16) / 255f;
+		float blue = Integer.parseInt(color.substring(5, 7), 16) / 255f;
+		float alpha = Integer.parseInt(color.substring(7, 9), 16) / 255f;
 		
 		return new float[]{red, green, blue, alpha};
 	}
 	
 	public static float[] decodeRGBColor(String color) {
-		String regex = "^rgb\\([ ]*?([0-9]){1,3},[ ]*?([0-9]){1,3},[ ]*?([0-9]){1,3}\\)$";
+		String regex = "^rgb\\([ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3})\\)$";
 		
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher m = pattern.matcher(color);
 		m.matches();
 		
-		float red = Integer.parseInt(m.group(1)) / 256f;
-		float green = Integer.parseInt(m.group(2)) / 256f;
-		float blue = Integer.parseInt(m.group(3)) / 256f;
+		float red = Integer.parseInt(m.group(1)) / 255f;
+		float green = Integer.parseInt(m.group(2)) / 255f;
+		float blue = Integer.parseInt(m.group(3)) / 255f;
 		
 		return new float[] {red, green, blue, 1};
 	}
 	
 	public static float[] decodeRGBAColor(String color) {
-		String regex = "^rgb\\([ ]*?([0-9]){1,3},[ ]*?([0-9]){1,3},[ ]*?([0-9]){1,3}\\)$";
+		String regex = "^rgba\\([ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3})\\)$";
 		
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher m = pattern.matcher(color);
 		m.matches();
 		
-		float red = Integer.parseInt(m.group(1)) / 256f;
-		float green = Integer.parseInt(m.group(2)) / 256f;
-		float blue = Integer.parseInt(m.group(3)) / 256f;
-		float alpha = Integer.parseInt(m.group(4)) / 256f;
+		float red = Integer.parseInt(m.group(1)) / 255f;
+		float green = Integer.parseInt(m.group(2)) / 255f;
+		float blue = Integer.parseInt(m.group(3)) / 255f;
+		float alpha = Integer.parseInt(m.group(4)) / 255f;
 		
 		return new float[] {red, green, blue, alpha};
 	}

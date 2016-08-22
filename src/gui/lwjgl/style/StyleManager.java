@@ -7,17 +7,23 @@ public class StyleManager {
 	
 	private static StyleTemplate defaultTemplate;
 	
+	private static Stack<StyleTemplate> currentTemplate;
+	
 	static {
+		currentTemplate = new Stack<StyleTemplate>();
+		
 		try {
 			defaultTemplate = StyleTemplateFactory.loadDefaultStyle("themes.bright");
+			
+			currentTemplate.push(defaultTemplate);
 		} catch (IOException e) {
+			System.err.println("Failed to load default style file");
 			e.printStackTrace();
 		} catch (ParsingException e) {
+			System.err.println("Failed to load default style file");
 			e.printStackTrace();
 		}
 	}
-	
-	private static Stack<StyleTemplate> currentTemplate;
 
 	public static StyleTemplate getTemplate() {
 		return currentTemplate.peek();
