@@ -37,11 +37,6 @@ public class List extends Component {
 		panel.addComponent(slider);
 		setElements(new ListElement[1]);
 		
-		list_r = 0.2f;
-		list_g = 0.2f;
-		list_b = 0.2f;
-		list_a = 1f;
-		
 		addToGroup("lists");
 	}
 	

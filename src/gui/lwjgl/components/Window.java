@@ -19,12 +19,10 @@ public class Window extends Component {
 		this.contentPane = contentPane;
 
 		this.label = new Label(centerX, centerY - sizeY / 2 + 12, sizeX, 25, title);
-		this.label.setBackgroundColor(0.05f, 0.05f, 0.05f, 1f);
-		this.label.setTextColor(1, 1, 1, 1);
 		
-		addToGroup("windows");
-		label.addToGroup("windows");
-		contentPane.addToGroup("windows");
+		addToGroup("window");
+		label.addToGroup("window");
+		contentPane.addToGroup("window");
 	}
 	
 	public Panel getContentPane() {
@@ -100,6 +98,9 @@ public class Window extends Component {
 	@Override
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
+		
+		label.loadTemplate(style);
+		contentPane.loadTemplate(style);
 	}
 
 }

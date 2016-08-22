@@ -1,0 +1,11 @@
+all {
+	background-color: rgb(51, 51, 51);
+	foreground-color: #888888;
+	text-color: rgba(256, 256, 256, 256);
+	border-color: #000000;
+	draw-border: true;
+}
+
+progressbars {
+	draw-border: false;
+}

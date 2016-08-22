@@ -19,8 +19,6 @@ public class Throbber extends Component {
 		super(centerX, centerY, sizeX, sizeY);
 		this.tex = tex;
 		
-		this.drawBorder = false;
-		
 		addToGroup("throbbers");
 	}
 

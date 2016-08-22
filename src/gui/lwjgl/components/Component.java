@@ -27,10 +27,10 @@ public abstract class Component {
 	
 	protected Component parent;
 	
-	protected float background_r = 0.25f, background_g = 0.25f, background_b = 0.25f, background_a = 1;
-	protected float foreground_r = 0.5f, foreground_g = 0.5f, foreground_b = 0.5f, foreground_a = 1;
-	protected float border_r = 0f, border_g = 0f, border_b = 0f, border_a = 1;
-	protected float text_r = 0, text_g = 0, text_b = 0, text_a = 1;
+	protected float background_r, background_g, background_b, background_a;
+	protected float foreground_r, foreground_g, foreground_b, foreground_a;
+	protected float border_r, border_g, border_b, border_a;
+	protected float text_r, text_g, text_b, text_a;
 	
 	protected Texture texture;
 

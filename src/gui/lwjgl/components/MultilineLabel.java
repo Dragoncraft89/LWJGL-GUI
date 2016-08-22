@@ -14,11 +14,6 @@ public class MultilineLabel extends Label {
 		slider = new Slider(centerX + sizeX / 2 - 5, centerY, 10, sizeY, false);
 		setText(text);
 		
-		background_r = 0.1f;
-		background_g = 0.1f;
-		background_b = 0.1f;
-		background_a = 1f;
-		
 		addToGroup("multiline");
 	}
 

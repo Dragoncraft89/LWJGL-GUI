@@ -12,10 +12,6 @@ public class Panel extends Component {
 	public Panel(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX, centerY, sizeX, sizeY);
 		
-		background_r = 0.1f;
-		background_g = 0.1f;
-		background_b = 0.1f;
-		
 		addToGroup("panels");
 	}
 
