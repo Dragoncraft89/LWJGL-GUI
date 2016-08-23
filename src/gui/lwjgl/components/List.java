@@ -31,9 +31,9 @@ public class List extends Component {
 	protected float list_b;
 	protected float list_a;
 
-	public List(int centerX, int centerY, int sizeX, int sizeY, int elementsVisible) {
+	public List(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
-		this.elementsVisible = elementsVisible;
+		this.elementsVisible = sizeY / font.getHeight();
 		this.elements = new ListElement[0];
 		this.panel = new Panel(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
 		this.slider = new Slider(sizeX - SLIDER_WIDTH / 2, sizeY / 2, SLIDER_WIDTH, sizeY, false);
@@ -66,9 +66,15 @@ public class List extends Component {
 		list_a = a;
 	}
 
-	public List(int centerX, int centerY, int sizeX, int sizeY, int elementsVisible, ListElement[] elements) {
-		this(centerX, centerY, sizeX, sizeY, elementsVisible);
+	public List(int centerX, int centerY, int sizeX, int sizeY, ListElement[] elements) {
+		this(centerX, centerY, sizeX, sizeY);
 		setElements(elements);
+	}
+	
+	public void setFont(LWJGLFont font) {
+		super.setFont(font);
+		
+		elementsVisible = sizeY / font.getHeight();
 	}
 
 	public void setElements(ListElement[] elements) {

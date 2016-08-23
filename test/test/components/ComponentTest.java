@@ -16,7 +16,7 @@ import test.Test;
 
 public class ComponentTest extends Test {
 	
-	private String theme = "themes.bright";
+	private String theme = "themes.dark";
 
 	public ComponentTest() {
 		try {
@@ -53,7 +53,7 @@ public class ComponentTest extends Test {
 		
 		ListElement[] elements = new ListElement[]{l,l,l,l,l,l,l,l,l,l,l,l,l,l,l};
 		Label label = new Label(320, 35, 200, 50, "Label");
-		List list = new List(110, 145, 200, 150, 5, elements);
+		List list = new List(110, 145, 200, 150, elements);
 		MultilineLabel multiline = new MultilineLabel(320, 145, 200, 150, "1\n2\n3\n4\n5\n6\n7\n8");
 		ProgressBar progressbar = new ProgressBar(110, 305, 200, 150, true, 0, 100);
 		Slider slider = new Slider(320, 305, 200, 150, true, 0, 100);

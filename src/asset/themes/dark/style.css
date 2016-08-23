@@ -4,7 +4,6 @@ all {
 	text-color: white;
 	border-color: white;
 	draw-border: false;
-	texture: none;
 }
 
 panels {
@@ -17,12 +16,12 @@ textfields {
 }
 
 labels {
-	background-color: #00000000;
+	background-color: #000000;
 }
 
 buttons {
-	background-color: #000066;
-	foreground-color: #0000dd;
+	background-color: #0000aa;
+	foreground-color: #0000ff;
 	draw-border: true;
 }
 
@@ -33,7 +32,7 @@ lists {
 
 progressbars, slider {
 	draw-border: true;
-	foreground-color: #aaaaaa;
+	foreground-color: #000088;
 }
 
 windows {

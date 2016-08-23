@@ -66,7 +66,7 @@ public class TextField extends Component {
 
 		super.paintBorder();
 		
-		font.drawString(s, padding, (sizeY - font.getHeight(s)) / 2);
+		font.drawString(s, padding, (sizeY - font.getHeight(s)) / 2, text_r, text_g, text_b, text_a);
 		
 		if(timer % 1.5 <= 0.75 && isFocused() && isEditable())
 			drawCursor();
