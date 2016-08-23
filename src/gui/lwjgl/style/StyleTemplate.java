@@ -10,49 +10,97 @@ import gui.lwjgl.components.List;
 import gui.lwjgl.components.Throbber;
 import gui.lwjgl.util.Texture;
 
+/**
+ * Stores all data from a css Stylesheet
+ * @author Florian
+ *
+ */
 public class StyleTemplate {
 	
 	private StyleTemplate parent;
 	
 	private HashMap<String, Style> data;
 	
+	/**
+	 * Constructor
+	 * @param parent
+	 * @param data
+	 */
 	public StyleTemplate(StyleTemplate parent, HashMap<String, Style> data) {
 		this.parent = parent;
 		this.data = data;
 	}
 
+	/**
+	 * Returns the backgroundColor
+	 * @return the backgroundColor
+	 */
 	public Value<float[]> getBackgroundColor(String group) {
 		return data.get(group).getBackgroundColor();
 	}
 
+	/**
+	 * Returns the foregroundColor
+	 * @return the foregroundColor
+	 */
 	public Value<float[]> getForegroundColor(String group) {
 		return data.get(group).getForegroundColor();
 	}
 
+	/**
+	 * Returns the textColor
+	 * @return the textColor
+	 */
 	public Value<float[]> getTextColor(String group) {
 		return data.get(group).getTextColor();
 	}
 
+	/**
+	 * Returns the borderColor
+	 * @return the borderColor
+	 */
 	public Value<float[]> getBorderColor(String group) {
 		return data.get(group).getBorderColor();
 	}
-	
+
+	/**
+	 * Returns the listColor
+	 * @return the listColor
+	 */
 	private Value<float[]> getListColor(String group) {
 		return data.get(group).getListColor();
 	}
 
+	/**
+	 * Returns the texture
+	 * @return the texture
+	 */
 	public Value<Texture> getTexture(String group) {
 		return data.get(group).getTexture();
 	}
 	
+	/**
+	 * Returns if the border should be drawn
+	 * @param group
+	 * @return true if the border should be drawn, false otherwise
+	 */
 	private Value<Boolean> getDrawBorder(String group) {
 		return data.get(group).getDrawBorder();
 	}
 	
+	/**
+	 * Returns the rotation speed for throbbers
+	 * @param group
+	 * @return the rotation speed for throbbers
+	 */
 	private Value<Float> getRotationSpeed(String group) {
 		return data.get(group).getRotationSpeed();
 	}
-	
+
+	/**
+	 * Loads all properties for a Throbber
+	 * @param throbber
+	 */
 	public void load(Throbber throbber) {
 		if(parent != null)
 			parent.load(throbber);
@@ -67,7 +115,11 @@ public class StyleTemplate {
 			loadProperties(throbber, group);
 		}
 	}
-	
+
+	/**
+	 * Loads all properties for a List
+	 * @param list
+	 */
 	public void load(List list) {
 		if(parent != null)
 			parent.load(list);
@@ -83,6 +135,10 @@ public class StyleTemplate {
 		}
 	}
 
+	/**
+	 * Loads all properties for any component, which does not have any special data
+	 * @param component
+	 */
 	public void load(Component component) {
 		if(parent != null)
 			parent.load(component);
@@ -175,18 +231,47 @@ public class StyleTemplate {
 		return true;
 	}
 
+	/**
+	 * Sets the StyleTemplates parent<br>
+	 * intern use only
+	 * @param parent
+	 */
 	public void setParent(StyleTemplate parent) {
 		this.parent = parent;
 	}
 	
+	/**
+	 * Loads a CSS StyleTemplate from a given file
+	 * @see StyleTemplateFactory#loadFromFile(File)
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParsingException
+	 */
 	public static StyleTemplate loadFromFile(File file) throws IOException, ParsingException {
 		return StyleTemplateFactory.loadFromFile(file);
 	}
-	
+
+	/**
+	 * Loads a CSS StyleTemplate from a given stream
+	 * @see StyleTemplateFactory#loadFromStream(InputStream)
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParsingException
+	 */
 	public static StyleTemplate loadFromStream(InputStream stream) throws IOException, ParsingException {
 		return StyleTemplateFactory.loadFromStream(stream);
 	}
-	
+
+	/**
+	 * Loads a CSS StyleTemplate from a given package inside the gui jar
+	 * @see StyleTemplateFactory#loadDefaultStyle(String)
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParsingException
+	 */
 	public static StyleTemplate loadDefaultStyle(String style) throws IOException, ParsingException {
 		return StyleTemplateFactory.loadDefaultStyle(style);
 	}

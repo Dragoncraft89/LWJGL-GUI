@@ -6,10 +6,19 @@ import java.util.LinkedHashMap;
 
 import gui.lwjgl.util.Texture;
 
+/**
+ * This class parses a CSS file
+ * @author Florian
+ *
+ */
 public class CSSParser {
 	
 	private InputStream stream;
 
+	/**
+	 * Constructor
+	 * @param stream - data to parse
+	 */
 	public CSSParser(InputStream stream) {
 		if(stream == null)
 			throw new IllegalArgumentException("stream is null");
@@ -17,6 +26,12 @@ public class CSSParser {
 		this.stream = stream;
 	}
 	
+	/**
+	 * Parses the entire InpuStream
+	 * @return all rules defined in the CSS stylesheet
+	 * @throws ParsingException
+	 * @throws IOException
+	 */
 	public LinkedHashMap<String, Style> parse() throws ParsingException, IOException {
 		LinkedHashMap<String, Style> rules = new LinkedHashMap<String, Style>();
 		

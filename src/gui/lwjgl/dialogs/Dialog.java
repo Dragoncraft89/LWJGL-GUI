@@ -15,6 +15,9 @@ import gui.lwjgl.components.GUI;
 public class Dialog extends GUI {
 	private DialogManager handler;
 	
+	/**
+	 * Constructor
+	 */
 	public Dialog() {
 		
 	}

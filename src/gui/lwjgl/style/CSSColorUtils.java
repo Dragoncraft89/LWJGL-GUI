@@ -7,6 +7,11 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class provides tools to convert color names, hex color codes, rgb and rgba colors into float[]
+ * @author Florian
+ *
+ */
 public class CSSColorUtils {
 	private static HashMap<String, float[]> colors = new HashMap<String, float[]>();
 
@@ -31,14 +36,29 @@ public class CSSColorUtils {
 	
 	private CSSColorUtils() {}
 	
+	/**
+	 * Checks if the argument is a valid CSS color name
+	 * @param color
+	 * @return true if the argument is a valid CSS color name, false otherwise
+	 */
 	public static boolean isColorName(String color) {
 		return colors.containsKey(color.toLowerCase());
 	}
 	
+	/**
+	 * Returns the float[] for a CSS color name
+	 * @param color
+	 * @return float[] r, g, b, a colors ranging from 0 to 1
+	 */
 	public static float[] getColorByName(String color) {
 		return colors.get(color.toLowerCase());
 	}
-	
+
+	/**
+	 * Returns the float[] for a Hex RGB color, such as #000000
+	 * @param color
+	 * @return float[] r, g, b, a colors ranging from 0 to 1
+	 */
 	public static float[] decodeHexRGBColor(String color) {
 		float red = Integer.parseInt(color.substring(1, 3), 16) / 255f;
 		float green = Integer.parseInt(color.substring(3, 5), 16) / 255f;
@@ -47,6 +67,11 @@ public class CSSColorUtils {
 		return new float[]{red, green, blue, 1};
 	}
 
+	/**
+	 * Returns the float[] for a Hex RGBA color, such as #000000ff
+	 * @param color
+	 * @return float[] r, g, b, a colors ranging from 0 to 1
+	 */
 	public static float[] decodeHexRGBAColor(String color) {
 		float red = Integer.parseInt(color.substring(1, 3), 16) / 255f;
 		float green = Integer.parseInt(color.substring(3, 5), 16) / 255f;
@@ -55,7 +80,12 @@ public class CSSColorUtils {
 		
 		return new float[]{red, green, blue, alpha};
 	}
-	
+
+	/**
+	 * Returns the float[] for a RGB color, such as rgb(100, 100, 100)
+	 * @param color
+	 * @return float[] r, g, b, a colors ranging from 0 to 1
+	 */
 	public static float[] decodeRGBColor(String color) {
 		String regex = "^rgb\\([ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3})\\)$";
 		
@@ -69,7 +99,12 @@ public class CSSColorUtils {
 		
 		return new float[] {red, green, blue, 1};
 	}
-	
+
+	/**
+	 * Returns the float[] for a RGBA color, such as rgba(100, 100, 100, 255)
+	 * @param color
+	 * @return float[] r, g, b, a colors ranging from 0 to 1
+	 */
 	public static float[] decodeRGBAColor(String color) {
 		String regex = "^rgba\\([ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3}),[ ]*?([0-9]{1,3})\\)$";
 		

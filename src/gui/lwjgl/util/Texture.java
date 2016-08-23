@@ -22,6 +22,11 @@ import javax.imageio.ImageIO;
 
 import java.awt.Graphics;
 
+/**
+ * This class converts Images into a for lwjgl usable format
+ * @author Florian
+ *
+ */
 public final class Texture {
 	private static HashMap<String, Texture> textures = new HashMap<String, Texture>();
 	
@@ -43,18 +48,34 @@ public final class Texture {
 	private int width;
 	private int height;
 	
+	/**
+	 * Constructor
+	 * @param texID
+	 */
 	public Texture(int texID) {
 		this.texID = texID;
 	}
 	
+	/**
+	 * Binds the texture so it can be used for rendering
+	 */
 	public void bind() {
 		glBindTexture(GL_TEXTURE_2D, texID);
 	}
 
+	/**
+	 * Returns the texture ID
+	 * @return the texture ID
+	 */
 	public int getID() {
 		return texID;
 	}
 	
+	/**
+	 * Creates a Texture-Object from a {@link BufferedImage} object
+	 * @param image
+	 * @return
+	 */
 	public static Texture createTextureFromImage(BufferedImage image) {
         int srcPixelFormat;
         
@@ -85,6 +106,12 @@ public final class Texture {
 
 	}
 	
+	/**
+	 * Loads a Texture from the given file
+	 * @param filename
+	 * @return
+	 * @throws IOException
+	 */
 	public static Texture createTextureFromFile(String filename) throws IOException {
 		Texture tex = textures.get(filename);
 		 
@@ -99,7 +126,14 @@ public final class Texture {
  
         return tex;
 	}
-	
+
+	/**
+	 * Loads the Texture from a given packageName<br>
+	 * <b>Note:</b> The last part from the packageName is interpreted as the file extension, e.g. for a.b.image.png is the equivalent path a/b/image.png
+	 * @param packageName
+	 * @return
+	 * @throws IOException
+	 */
 	public static Texture createTextureFromPackage(String packageName) throws IOException {
 		Texture tex = textures.get(packageName);
 		
@@ -156,10 +190,18 @@ public final class Texture {
         return imageBuffer;
     }
 
+    /**
+     * Returns the Textures width
+     * @return the width
+     */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * Returns the Textures height
+	 * @return the height
+	 */
 	public int getHeight() {
 		return height;
 	}
