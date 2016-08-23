@@ -8,12 +8,25 @@ import gui.lwjgl.components.*;
 import gui.lwjgl.dialogs.Dialog;
 import gui.lwjgl.dialogs.DialogManager;
 import gui.lwjgl.listener.ChangeEventListener;
+import gui.lwjgl.style.ParsingException;
+import gui.lwjgl.style.StyleManager;
+import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.Texture;
 import test.Test;
 
 public class ComponentTest extends Test {
+	
+	private String theme = "themes.dark";
 
 	public ComponentTest() {
+		try {
+			StyleManager.pushTemplate(StyleTemplate.loadDefaultStyle(theme));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (ParsingException e1) {
+			e1.printStackTrace();
+		}
+		
 		GUI overlay = new GUI();
 		
 		Panel center = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 700, 500);

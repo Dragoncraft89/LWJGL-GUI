@@ -36,7 +36,7 @@ public class List extends Component {
 		this.elementsVisible = elementsVisible;
 		this.elements = new ListElement[0];
 		this.panel = new Panel(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
-		this.slider = new Slider(sizeX, sizeY / 2, SLIDER_WIDTH, sizeY, false);
+		this.slider = new Slider(sizeX - SLIDER_WIDTH / 2, sizeY / 2, SLIDER_WIDTH, sizeY, false);
 		panel.addComponent(slider);
 		setElements(new ListElement[1]);
 		

@@ -1,0 +1,53 @@
+all {
+	background-color: black;
+	foreground-color: white;
+	text-color: white;
+	border-color: white;
+	draw-border: false;
+}
+
+panels {
+	background-color: #222222;
+}
+
+textfields {
+	background-color: black;
+	draw-border: true;
+}
+
+labels {
+	background-color: #00000000;
+}
+
+buttons {
+	background-color: #000066;
+	foreground-color: #0000dd;
+	draw-border: true;
+}
+
+lists {
+	list-color: #aaaaaa;
+	draw-border: true;
+}
+
+progressbars, slider {
+	draw-border: true;
+	foreground-color: #aaaaaa;
+}
+
+windows {
+	draw-border: true;
+}
+
+windows.labels {
+	background-color: black;
+}
+
+multiline {
+	background-color: black;
+	draw-border: true;
+}
+
+multiline.slider, lists.slider {
+	background-color: darkgrey;
+}
