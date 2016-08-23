@@ -106,7 +106,11 @@ public final class Texture {
 		if (tex != null) {
             return tex;
         }
-        BufferedImage bufferedImage = ImageIO.read(Texture.class.getResourceAsStream("/" + packageName.replace('.', '/')));
+		String extension = packageName.substring(packageName.lastIndexOf('.'));
+		packageName = packageName.substring(0, packageName.lastIndexOf('.'));
+		String path = "/" + packageName.replace('.', '/') + extension;
+		
+        BufferedImage bufferedImage = ImageIO.read(Texture.class.getResourceAsStream(path));
  
         tex = createTextureFromImage(bufferedImage);
  

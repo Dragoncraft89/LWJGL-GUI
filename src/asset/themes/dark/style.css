@@ -4,6 +4,7 @@ all {
 	text-color: white;
 	border-color: white;
 	draw-border: false;
+	texture: none;
 }
 
 panels {

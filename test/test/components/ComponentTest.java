@@ -16,7 +16,7 @@ import test.Test;
 
 public class ComponentTest extends Test {
 	
-	private String theme = "themes.dark";
+	private String theme = "themes.bright";
 
 	public ComponentTest() {
 		try {

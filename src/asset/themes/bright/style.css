@@ -6,8 +6,13 @@ all {
 	draw-border: false;
 }
 
+windows {
+	draw-border: true;
+}
+
 panels {
 	background-color: #dddddd;
+	texture: "asset.themes.bright.panel.png";
 }
 
 textfields {
@@ -20,9 +25,10 @@ labels {
 }
 
 buttons {
-	background-color: #006600;
-	foreground-color: #009900;
+	background-color: #00aa00;
+	foreground-color: #00ff00;
 	draw-border: true;
+	texture: "asset.themes.bright.button.png";
 }
 
 lists {
@@ -33,22 +39,29 @@ lists {
 progressbars {
 	draw-border: true;
 	foreground-color: #0000aa;
-}
-
-slider {
-	draw-border: true;
-	foreground-color: #0000aa;
-}
-
-windows {
-	draw-border: true;
-}
-
-windows.labels {
-	background-color: #0088dd;
+	texture: "asset.themes.bright.progressbar.png";
 }
 
 multiline {
 	background-color: #ffffff;
 	draw-border: true;
+}
+
+slider {
+	draw-border: true;
+	foreground-color: #0000ff;
+}
+
+throbbers {
+	texture: "asset.themes.bright.throbber.png";
+	foreground-color: #0000dd;
+	rotation-speed: 20;
+}
+
+windows.labels {
+	background-color: #00ddff;
+}
+
+windows.panels {
+	texture: none;
 }

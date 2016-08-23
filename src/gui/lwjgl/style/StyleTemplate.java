@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import gui.lwjgl.components.Component;
 import gui.lwjgl.components.List;
+import gui.lwjgl.components.Throbber;
 import gui.lwjgl.util.Texture;
 
 public class StyleTemplate {
@@ -46,6 +47,25 @@ public class StyleTemplate {
 	
 	private Value<Boolean> getDrawBorder(String group) {
 		return data.get(group).getDrawBorder();
+	}
+	
+	private Value<Float> getRotationSpeed(String group) {
+		return data.get(group).getRotationSpeed();
+	}
+	
+	public void load(Throbber throbber) {
+		if(parent != null)
+			parent.load(throbber);
+		
+		for(String group : data.keySet()) {
+			String[] groups = group.split(",");
+			
+			if(!hasAtLeastOneGroup(throbber, groups)) {
+				continue;
+			}
+			
+			loadProperties(throbber, group);
+		}
 	}
 	
 	public void load(List list) {
@@ -120,6 +140,16 @@ public class StyleTemplate {
 		if(listColor.isSet()) {
 			float[] l = listColor.getValue();
 			list.setListColor(l[0], l[1], l[2], l[3]);
+		}
+	}
+	
+	private void loadProperties(Throbber throbber, String group) {
+		loadProperties((Component)throbber, group);
+		
+		Value<Float> rotationSpeed = getRotationSpeed(group);
+		
+		if(rotationSpeed.isSet()) {
+			throbber.setRotationSpeed(rotationSpeed.getValue());
 		}
 	}
 

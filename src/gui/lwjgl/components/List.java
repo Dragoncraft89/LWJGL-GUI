@@ -45,9 +45,10 @@ public class List extends Component {
 		addToGroup("lists");
 	}
 	
-	@Override
 	public void setBackgroundColor(float r, float g, float b, float a) {
 		panel.setBackgroundColor(r, g, b, a);
+		
+		super.setBackgroundColor(r, g, b, a);
 	}
 	
 	public void setSliderBackgroundColor(float r, float g, float b, float a) {
@@ -100,16 +101,23 @@ public class List extends Component {
 		glPushMatrix();
 		glTranslatef(0, y, 0);
 		
+		bindTexture();
 		glBegin(GL_QUADS);
 		if (i == selected)
 			glColor4f(list_r, list_g, list_b, list_a);
 		else
 			glColor4f(background_r, background_g, background_b, background_a);
+		glTexCoord2f(0, 0);
 		glVertex2f(1, 1);
-		glVertex2f(sizeX - SLIDER_WIDTH, 1);
-		glVertex2f(sizeX - SLIDER_WIDTH, heightPerElement - 1);
+		glTexCoord2f(1, 0);
+		glVertex2f(sizeX, 1);
+		glTexCoord2f(1, 1);
+		glVertex2f(sizeX, heightPerElement - 1);
+		glTexCoord2f(0, 1);
 		glVertex2f(1, heightPerElement - 1);
 		glEnd();
+		
+		glBindTexture(GL_TEXTURE_2D, 0);
 
 		Texture tex = elements[i].getIcon();
 		if (tex != null) {
@@ -217,6 +225,6 @@ public class List extends Component {
 	public void loadTemplate(StyleTemplate style) {
 		style.load(this);
 		
-		panel.loadTemplate(style);
+		slider.loadTemplate(style);
 	}
 }

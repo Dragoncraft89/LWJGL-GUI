@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 
+import gui.lwjgl.util.Texture;
+
 public class CSSParser {
 	
 	private InputStream stream;
@@ -98,11 +100,21 @@ public class CSSParser {
 		case "border-color":style.setBorderColor(parseColor(value));break;
 		case "list-color":style.setListColor(parseColor(value));break;
 		case "draw-border":style.setDrawBorder(asBoolean(value));break;
+		case "texture":style.setTexture(value.equals("none")?null:readTexture(asString(value)));break;
+		case "rotation-speed":style.setRotationSpeed(Float.parseFloat(value));
 		}
 	}
 
 	private void throwExceptionOnToken(int c, int line) throws ParsingException{
 		throw new ParsingException("Invalid token: \'" + (char)c + "\' on line " + line);
+	}
+	
+	private String asString(String s) throws ParsingException {
+		if(!s.matches("\".+?\"")) {
+			throw new ParsingException("String expected, got \'" + s + "\'");
+		}
+		
+		return s.substring(1, s.length() - 1);
 	}
 	
 	private boolean asBoolean(String s) throws ParsingException {
@@ -113,6 +125,20 @@ public class CSSParser {
 			return false;
 		
 		throw new ParsingException("Boolean expected, got \'" + s + "\'");
+	}
+	
+	private Texture readTexture(String resourceName) {
+		try {
+			if(resourceName.matches("^(\\w+?\\.){2,}(\\w+?)$")) {
+				return Texture.createTextureFromPackage(resourceName);
+			}
+			
+			return Texture.createTextureFromFile(resourceName);
+		} catch (IOException e) {
+			System.err.println("Failed to load " + resourceName);
+		}
+		
+		return null;
 	}
 	
 	private float[] parseColor(String color) throws ParsingException{

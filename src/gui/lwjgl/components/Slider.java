@@ -44,15 +44,26 @@ public class Slider extends Component {
 		int d = maxValue + 1;
 		float posX = sizeX / (float) d;
 		float posY = sizeY / (float) d;
+		
+		bindTexture();
 
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
 		if (!isEditable())
 			glColor4f(background_r * 0.5f, background_g * 0.5f, background_b * 0.5f, background_a);
+		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
 		glVertex2f(sizeX, 0);
+		glTexCoord2f(1, 1);
 		glVertex2f(sizeX, sizeY);
+		glTexCoord2f(0, 1);
 		glVertex2f(0, sizeY);
+		glEnd();
+		
+		glBindTexture(GL_TEXTURE_2D, 0);
+		
+		glBegin(GL_QUADS);
 
 		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())

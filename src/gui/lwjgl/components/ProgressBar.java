@@ -45,22 +45,36 @@ public class ProgressBar extends Component {
 		glVertex2f(0, sizeY);
 		glVertex2f(sizeX, sizeY);
 		glVertex2f(sizeX, 0);
+		
+		glEnd();
+
+		bindTexture();
+		glBegin(GL_QUADS);
 
 		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		if (!isEditable())
 			glColor4f(foreground_r * 0.5f, foreground_g * 0.5f, foreground_b * 0.5f, foreground_a);
 		if (horizontal) {
+			glTexCoord2f(0, 0);
 			glVertex2f(0, 0);
+			glTexCoord2f(0, 1);
 			glVertex2f(0, sizeY);
+			glTexCoord2f(1, 1);
 			glVertex2f((value) * posX, sizeY);
+			glTexCoord2f(1, 0);
 			glVertex2f((value) * posX, 0);
 		} else {
+			glTexCoord2f(0, 0);
 			glVertex2f(0, 0);
+			glTexCoord2f(0, 1);
 			glVertex2f(0, (value) * posY);
+			glTexCoord2f(1, 1);
 			glVertex2f(sizeX, (value) * posY);
+			glTexCoord2f(1, 0);
 			glVertex2f(sizeX, 0);
 		}
 		glEnd();
+		glBindTexture(GL_TEXTURE_2D, 0);
 		
 		super.paintBorder();
 		glPopMatrix();

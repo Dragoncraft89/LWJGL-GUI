@@ -40,7 +40,7 @@ public class Throbber extends Component {
 		
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
-		glColor3f(1, 1, 1);
+		glColor4f(foreground_r, foreground_g, foreground_b, foreground_a);
 		glVertex2f(0, 0);
 		glTexCoord2f(0, 1);
 		glVertex2f(0, sizeY);

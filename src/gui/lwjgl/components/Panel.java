@@ -20,13 +20,19 @@ public class Panel extends Component {
 		glPushMatrix();
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		
+		bindTexture();
 		glBegin(GL_QUADS);
 		glColor4f(background_r, background_g, background_b, background_a);
+		glTexCoord2f(0, 0);
 		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
 		glVertex2f(sizeX, 0);
+		glTexCoord2f(1, 1);
 		glVertex2f(sizeX, sizeY);
+		glTexCoord2f(0, 1);
 		glVertex2f(0, sizeY);
 		glEnd();
+		glBindTexture(GL_TEXTURE_2D, 0);
 		
 		super.paintBorder();
 

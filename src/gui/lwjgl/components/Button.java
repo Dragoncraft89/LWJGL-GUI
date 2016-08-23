@@ -39,6 +39,8 @@ public class Button extends Component {
 		glTexCoord2f(0, 1);
 		glVertex2f(0, sizeY);
 		glEnd();
+		
+		glBindTexture(GL_TEXTURE_2D, 0);
 
 		super.paintBorder();
 		

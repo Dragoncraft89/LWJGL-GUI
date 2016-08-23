@@ -13,6 +13,8 @@ public class Style {
 	
 	private Value<Texture> texture = new Value<Texture>();
 	
+	private Value<Float> rotationSpeed = new Value<Float>();
+	
 	public void setBackgroundColor(float r, float g, float b, float a) {
 		float[] backgroundColor = {r, g, b, a};
 		
@@ -71,6 +73,10 @@ public class Style {
 		this.texture.setValue(texture);
 	}
 
+	public void setRotationSpeed(float rotationSpeed) {
+		this.rotationSpeed.setValue(rotationSpeed);
+	}
+
 	public Value<float[]> getBackgroundColor() {
 		return backgroundColor;
 	}
@@ -97,5 +103,9 @@ public class Style {
 
 	public Value<Texture> getTexture() {
 		return texture;
+	}
+	
+	public Value<Float> getRotationSpeed() {
+		return rotationSpeed;
 	}
 }
