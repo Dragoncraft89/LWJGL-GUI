@@ -7,6 +7,7 @@ import org.lwjgl.opengl.Display;
 import gui.lwjgl.components.*;
 import gui.lwjgl.dialogs.Dialog;
 import gui.lwjgl.dialogs.DialogManager;
+import gui.lwjgl.listener.ChangeEventListener;
 import gui.lwjgl.util.Texture;
 import test.Test;
 
@@ -41,9 +42,16 @@ public class ComponentTest extends Test {
 		Label label = new Label(320, 35, 200, 50, "Label");
 		List list = new List(110, 145, 200, 150, 5, elements);
 		MultilineLabel multiline = new MultilineLabel(320, 145, 200, 150, "1\n2\n3\n4\n5\n6\n7\n8");
-		ProgressBar progressbar = new ProgressBar(110, 305, 200, 150, true, 0, 2);
-		progressbar.setValue(1);
+		ProgressBar progressbar = new ProgressBar(110, 305, 200, 150, true, 0, 100);
 		Slider slider = new Slider(320, 305, 200, 150, true, 0, 100);
+		slider.addChangeEventListener(new ChangeEventListener() {
+
+			@Override
+			public void action(Component c) {
+				progressbar.setValue(slider.getValue());
+			}
+			
+		});
 		TextField textfield = new TextField(110, 415, 200, 50);
 		Throbber throbber = new Throbber(320, 415, 50, 50);
 		

@@ -43,6 +43,8 @@ public abstract class Component {
 	protected boolean editable = true;
 	private boolean focused;
 	protected boolean drawBorder = true;
+	
+	private boolean isPressed;
 
 	protected LWJGLFont font = FONT_STANDARD;
 
@@ -198,7 +200,7 @@ public abstract class Component {
 			return false;
 		}
 		
-		if(button == 0 && isInComponent(x, y)) {
+		if(button == 0 && !isPressed && isInComponent(x, y)) {
 			fireEvent(x, y, ClickEventListener.PRESSED);
 			return true;
 		}
@@ -211,9 +213,12 @@ public abstract class Component {
 			return false;
 		}
 		
-		if(button == 0 && isInComponent(x, y)) {
+		if(button == 0 && isPressed && isInComponent(x, y)) {
+			isPressed = false;
 			fireEvent(x, y, ClickEventListener.RELEASED);
 			return true;
+		} else if(button == 0 && isPressed) {
+			isPressed = false;
 		}
 		
 		return false;
