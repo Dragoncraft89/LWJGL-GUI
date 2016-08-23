@@ -81,14 +81,23 @@ public class ComponentTest extends Test {
 		
 		DialogManager.setOverlayDefault(overlay);
 		
-		Dialog dialog = new Dialog();
+		Dialog dialog1 = new Dialog();
 		
 		Panel contentPane = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 200, 100);
 		Window window = new Window(contentPane, "Test");
 		
-		dialog.addComponent(window);
+		dialog1.addComponent(window);
 		
-		DialogManager.openDialogDefault(dialog);
+		DialogManager.openDialogDefault(dialog1);
+
+		Dialog dialog2 = new Dialog();
+		
+		Panel contentPane2 = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 200, 100);
+		Window window2 = new Window(contentPane2, "Test");
+		
+		dialog2.addComponent(window2);
+		
+		DialogManager.openDialogDefault(dialog2);
 		
 		renderLoop();
 	}

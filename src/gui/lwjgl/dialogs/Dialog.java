@@ -67,22 +67,4 @@ public class Dialog extends GUI {
 		
 		return false;
 	}
-
-	public boolean mouseWheelChanged(int dwheel, int x, int y) {
-		if(super.mouseWheelChanged(dwheel, x, y)) {
-			placeOnTop();
-			return true;
-		}
-		
-		return false;
-	}
-
-	public boolean mouseMoved(int x, int y, int dX, int dY) {
-		if(super.mouseMoved(x, y, dX, dY)) {
-			placeOnTop();
-			return true;
-		}
-		
-		return false;
-	}
 }

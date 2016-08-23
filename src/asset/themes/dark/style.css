@@ -1,5 +1,5 @@
 all {
-	background-color: black;
+	background-color: #222222;
 	foreground-color: white;
 	text-color: white;
 	border-color: white;
@@ -11,12 +11,11 @@ panels {
 }
 
 textfields {
-	background-color: black;
 	draw-border: true;
 }
 
 labels {
-	background-color: #000000;
+	background-color:#111111;
 }
 
 buttons {
@@ -44,7 +43,6 @@ windows.labels {
 }
 
 multiline {
-	background-color: black;
 	draw-border: true;
 }
 

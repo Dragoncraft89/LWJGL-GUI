@@ -18,18 +18,19 @@ import gui.lwjgl.style.StyleTemplate;
  * @author Florian
  *
  */
-public class MultilineLabel extends Label {
+public class MultilineLabel extends Component{
 	private static int SPACE_BETWEEN_LINES = -2;
 	
 	private static int padding = 5;
 
 	private Slider slider;
 
+	private String text;
+
 	public MultilineLabel(int centerX, int centerY, int sizeX, int sizeY, String text) {
-		super(centerX - 5, centerY, sizeX - 10, sizeY, text);
+		super(centerX - 5, centerY, sizeX - 10, sizeY);
 		slider = new Slider(centerX + sizeX / 2 - 5, centerY, 10, sizeY, false);
 		setText(text);
-		
 		addToGroup("multiline");
 		slider.addToGroup("multiline");
 	}
