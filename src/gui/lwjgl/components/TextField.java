@@ -10,6 +10,15 @@ import org.lwjgl.input.Keyboard;
 import gui.lwjgl.listener.KeyEventListener;
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a textfield<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * textfields<br>
+ * @author Florian
+ *
+ */
 public class TextField extends Component {
 	private StringBuilder value = new StringBuilder();
 	
@@ -23,6 +32,13 @@ public class TextField extends Component {
 	
 	private float timer;
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 */
 	public TextField(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX, centerY, sizeX, sizeY);
 		
@@ -86,6 +102,11 @@ public class TextField extends Component {
 		glEnd();
 	}
 
+	/**
+	 * Adds a KeyEventListener
+	 * @see KeyEventListener
+	 * @param listener
+	 */
 	public void addKeyEventListener(KeyEventListener listener) {
 		this.listener.add(listener);
 	}
@@ -96,10 +117,18 @@ public class TextField extends Component {
 		}
 	}
 
+	/**
+	 * Returns the textfield's value
+	 * @return the textfield's value
+	 */
 	public String getValue() {
 		return value.toString();
 	}
 	
+	/**
+	 * Sets the textfield's value
+	 * @param value
+	 */
 	public void setText(String value) {
 		this.value = new StringBuilder(value);
 		cursorPos = value.length();

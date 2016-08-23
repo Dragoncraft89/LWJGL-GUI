@@ -12,6 +12,26 @@ import org.lwjgl.util.glu.GLU;
 import gui.lwjgl.components.GUI;
 import gui.lwjgl.listener.EventCallBack;
 
+/**
+ * This class handles all open dialogs and the overlay<br>
+ * <br>
+ * For Legacy lwjgl (2.x) there is only one instance,<br>
+ * which can be accessed per {@link #getDefault()}<br>
+ * or via the xxxDefault() static methods<br>
+ * 
+ * <b>Note:</b> There need to be called two methods in the main rendering loop:<br>
+ * {@link #paintDefault()} or {@link #paint()}<br>
+ * {@link #dispatchEventsDefault()} or {@link #dispatchEvents()}<br>
+ * 
+ * @see #getDefault()
+ * @see #paintDefault()
+ * @see #dispatchEventsDefault()
+ * @see #setOverlayDefault(GUI)
+ * @see #openDialogDefault(Dialog)
+ * 
+ * @author Florian
+ *
+ */
 public class DialogManager {
 	private static DialogManager instance;
 	
@@ -25,11 +45,21 @@ public class DialogManager {
 		activeDialogs = new Stack<Dialog>();
 	}
 	
+	/**
+	 * Opens a dialog
+	 * 
+	 * @param dialog - the dialog to open
+	 */
 	public void openDialog(Dialog dialog) {
 		activeDialogs.push(dialog);
 		dialog.open(this);
 	}
 	
+	/**
+	 * This method paints the overlay and the dialogs<br>
+	 * <br>
+	 * <b>Note:</b> This method needs to be called in the main rendering loop
+	 */
 	public void paint() {
 		guiMatrix();
 		if(overlay != null);
@@ -64,16 +94,33 @@ public class DialogManager {
 		glMatrixMode(GL_MODELVIEW);
 	}
 	
+	/**
+	 * This method is triggered when a dialog is focused<br>
+	 * <br>
+	 * The dialog gets placed on top of the stack
+	 * 
+	 * @param dialog
+	 */
 	public void placeOnTop(Dialog dialog) {
 		activeDialogs.remove(dialog);
 		activeDialogs.push(dialog);
 	}
 	
+	/**
+	 * Sets the overlay
+	 * @param gui - the overlay
+	 */
 	public void setOverlay(GUI gui) {
 		this.overlay = gui;
 		gui.open(this);
 	}
 	
+	/**
+	 * This method processes all events from the lwjgl window.<br>
+	 * All events are passed to dialogs, to the overlay and to the EventCallBack if they don't get consumed by parts of the gui.<br>
+	 * <br>
+	 * <b>Note:</b> This method needs to be called in the main rendering loop
+	 */
 	public void dispatchEvents() {
 		while (Keyboard.next()) {
 			int eventKey = Keyboard.getEventKey();
@@ -176,23 +223,59 @@ public class DialogManager {
 		if(callBack != null)
 			callBack.mouseWheelChanged(dwheel, x, y);
 	}
-	
+
+	/**
+	 * This is equal to {@link #getDefault()}.{@link #openDialog(Dialog)}
+	 * 
+	 * @see DialogManager
+	 * @see #openDialog(Dialog)
+	 * @see #getDefault()
+	 */
 	public static void openDialogDefault(Dialog dialog) {
 		getDefault().openDialog(dialog);
 	}
 	
+	/**
+	 * This is equal to {@link #getDefault()}.{@link #paint()}
+	 * 
+	 * @see DialogManager
+	 * @see #paint()
+	 * @see #getDefault()
+	 */
 	public static void paintDefault() {
 		getDefault().paint();
 	}
-	
+
+	/**
+	 * This is equal to {@link #getDefault()}.{@link #setOverlay(GUI)}
+	 * 
+	 * @see DialogManager
+	 * @see #setOverlay(GUI)
+	 * @see #getDefault()
+	 */
 	public static void setOverlayDefault(GUI gui) {
 		getDefault().setOverlay(gui);
 	}
-	
+
+	/**
+	 * This is equal to {@link #getDefault()}.{@link #dispatchEvents()}
+	 * 
+	 * @see DialogManager
+	 * @see #dispatchEvents()
+	 * @see #getDefault()
+	 */
 	public static void dispatchEventsDefault() {
 		getDefault().dispatchEvents();
 	}
 	
+	/**
+	 * Returns the default DialogManager<br>
+	 * <br>
+	 * Because legacy lwjgl (2.x) is only capable of running one window,<br>
+	 * new DialogManager-Objects need not be created and is therefore disabled
+	 * 
+	 * @return the default DialogManager
+	 */
 	public static DialogManager getDefault() {
 		if(instance == null)
 			instance = new DialogManager();

@@ -9,6 +9,15 @@ import org.lwjgl.opengl.Display;
 import gui.lwjgl.listener.ChangeEventListener;
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a slider<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * slider<br>
+ * @author Florian
+ *
+ */
 public class Slider extends Component {
 	private static final int MINIMAL_SIZE = 5;
 	
@@ -20,10 +29,28 @@ public class Slider extends Component {
 
 	private ArrayList<ChangeEventListener> listener = new ArrayList<ChangeEventListener>();
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 * @param horizontal
+	 */
 	public Slider(int centerX, int centerY, int sizeX, int sizeY, boolean horizontal) {
 		this(centerX, centerY, sizeX, sizeY, horizontal, 0, 1);
 	}
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 * @param horizontal
+	 * @param minValue
+	 * @param maxValue
+	 */
 	public Slider(int centerX, int centerY, int sizeX, int sizeY, boolean horizontal, int minValue, int maxValue) {
 		super(centerX, centerY, sizeX, sizeY);
 		this.horizontal = horizontal;
@@ -32,6 +59,10 @@ public class Slider extends Component {
 		addToGroup("slider");
 	}
 
+	/**
+	 * Sets the slider's max value
+	 * @param maxValue
+	 */
 	public void setMaxValue(int maxValue) {
 		this.maxValue = maxValue;
 	}
@@ -93,6 +124,10 @@ public class Slider extends Component {
 		}
 	}
 
+	/**
+	 * Returns the slider's value
+	 * @return the slider's value
+	 */
 	public int getValue() {
 		return value;
 	}
@@ -103,10 +138,18 @@ public class Slider extends Component {
 		}
 	}
 
+	/**
+	 * Adds a ChangeEventListener to this component
+	 * @see ChangeEventListener
+	 */
 	public void addChangeEventListener(ChangeEventListener listener) {
 		this.listener.add(listener);
 	}
 
+	/**
+	 * Sets the slider's value
+	 * @param value
+	 */
 	public void setValue(int value) {
 		int oldvalue = this.value;
 

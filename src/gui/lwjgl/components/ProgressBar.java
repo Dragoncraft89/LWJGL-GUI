@@ -4,6 +4,15 @@ import static org.lwjgl.opengl.GL11.*;
 
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a label<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * panels<br>
+ * @author Florian
+ *
+ */
 public class ProgressBar extends Component {
 
 	private boolean horizontal;

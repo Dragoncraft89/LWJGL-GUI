@@ -4,6 +4,20 @@ import static org.lwjgl.opengl.GL11.*;
 
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a label<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * multiline<br>
+ * <br>
+ * The slider this component has the groups:
+ * all<br>
+ * slider<br>
+ * multiline<br>
+ * @author Florian
+ *
+ */
 public class MultilineLabel extends Label {
 	private static int SPACE_BETWEEN_LINES = -2;
 	
@@ -20,15 +34,32 @@ public class MultilineLabel extends Label {
 		slider.addToGroup("multiline");
 	}
 
+	/**
+	 * Sets the components text
+	 */
 	public void setText(String text) {
 		this.text = text;
 		slider.setMaxValue(Math.max(0, (int) Math.ceil(getLines(text) - ((float) sizeY / (font.getHeight() + SPACE_BETWEEN_LINES)))));
 	}
 	
+	/**
+	 * Sets the background color of the slider
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @param a
+	 */
 	public void setSliderBackgroundColor(float r, float g, float b, float a) {
 		slider.setBackgroundColor(r, g, b, a);
 	}
 	
+	/**
+	 * Sets the foreground color of the slider
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @param a
+	 */
 	public void setSliderForegroundColor(float r, float g, float b, float a) {
 		slider.setForegroundColor(r, g, b, a);
 	}

@@ -5,6 +5,15 @@ import static org.lwjgl.opengl.GL11.*;
 import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.Texture;
 
+/**
+ * This is a throbber(a rotating image to indicate the programm is working)<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * throbbers<br>
+ * @author Florian
+ *
+ */
 public class Throbber extends Component {
 	private double rotation;
 	

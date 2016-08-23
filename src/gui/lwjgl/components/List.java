@@ -11,6 +11,15 @@ import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Texture;
 
+/**
+ * This is a list<br>
+ * <br>
+ * default groups:<br>
+ * all
+ * lists
+ * @author Florian
+ *
+ */
 public class List extends Component {
 	protected static final int SLIDER_WIDTH = 10;
 	protected static final int PADDING_LEFT = 5;
@@ -31,6 +40,13 @@ public class List extends Component {
 	protected float list_b;
 	protected float list_a;
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 */
 	public List(int centerX, int centerY, int sizeX, int sizeY) {
 		super(centerX - SLIDER_WIDTH / 2, centerY, sizeX - SLIDER_WIDTH, sizeY);
 		this.elementsVisible = sizeY / font.getHeight();
@@ -59,6 +75,13 @@ public class List extends Component {
 		slider.setForegroundColor(r, g, b, a);
 	}
 	
+	/**
+	 * Sets the color for selected list entries (CSS attribute: list-color)
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @param a
+	 */
 	public void setListColor(float r, float g, float b, float a) {
 		list_r = r;
 		list_g = g;
@@ -66,6 +89,14 @@ public class List extends Component {
 		list_a = a;
 	}
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 * @param elements
+	 */
 	public List(int centerX, int centerY, int sizeX, int sizeY, ListElement[] elements) {
 		this(centerX, centerY, sizeX, sizeY);
 		setElements(elements);
@@ -77,6 +108,10 @@ public class List extends Component {
 		elementsVisible = sizeY / font.getHeight();
 	}
 
+	/**
+	 * Sets the elements this list should display
+	 * @param elements
+	 */
 	public void setElements(ListElement[] elements) {
 		this.elements = elements;
 		this.slider.setMaxValue(Math.max(0, elements.length - elementsVisible));
@@ -103,6 +138,13 @@ public class List extends Component {
 		glPopMatrix();
 	}
 
+	/**
+	 * This method draws a element of this list
+	 * @param heightPerElement
+	 * @param offset
+	 * @param y
+	 * @param i
+	 */
 	protected void paintElement(int heightPerElement, int offset, int y, int i) {
 		glPushMatrix();
 		glTranslatef(0, y, 0);
@@ -171,16 +213,30 @@ public class List extends Component {
 		return false;
 	}
 
+	/**
+	 * Adds a SelectionListener to this list
+	 * @see SelectionListener
+	 * @param selectionListener
+	 */
 	public void addSelectionListener(SelectionListener selectionListener) {
 		this.listeners.add(selectionListener);
 	}
 
+	/**
+	 * fires a selection event
+	 * @param element
+	 * @param index
+	 */
 	protected void fireOnSelectEvent(ListElement element, int index) {
 		for (int i = 0; i < listeners.size(); i++) {
 			listeners.get(i).onSelect(element, index);
 		}
 	}
 
+	/**
+	 * Returns the list's selected Element
+	 * @return the selected index
+	 */
 	public ListElement getSelected() {
 		if (selected >= 0 && selected < elements.length) {
 			return elements[selected];
@@ -188,6 +244,10 @@ public class List extends Component {
 		return null;
 	}
 
+	/**
+	 * Returns the list's selected index
+	 * @return the selected index
+	 */
 	public int getSelectedIndex() {
 		if (selected >= 0 && selected < elements.length) {
 			return selected;
@@ -195,6 +255,10 @@ public class List extends Component {
 		return -1;
 	}
 
+	/**
+	 * Sets the list's selected index
+	 * @param selected
+	 */
 	public void setSelected(int selected) {
 		this.selected = Math.min(selected, elements.length);
 	}
@@ -213,6 +277,21 @@ public class List extends Component {
 		drawString(0, font, text, leftX, leftY, r, g, b, a);
 	}
 	
+
+	/**
+	 * Draws the given text centered to the given coordinates with the given color<br>
+	 * This function draws as much text as possible onto the component
+	 * This function takes into account the ListElements texture width
+	 * @param texWidth
+	 * @param font
+	 * @param text
+	 * @param centerX
+	 * @param centerY
+	 * @param r
+	 * @param g
+	 * @param b
+	 * @param a
+	 */
 	public void drawString(int texWidth, LWJGLFont font, String text, int leftX, int leftY, float r, float g, float b, float a) {
 		String s = "";
 		for(int i = 1; i <= text.length(); i++) {

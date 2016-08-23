@@ -6,6 +6,17 @@ import java.util.ArrayList;
 
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a label<br>
+ * All components assigned to this label are placed relatively to this component,<br>
+ * therefore (0|0) is the top left corner of the panel
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * panels<br>
+ * @author Florian
+ *
+ */
 public class Panel extends Component {
 	ArrayList<Component> components = new ArrayList<Component>();
 
@@ -43,11 +54,19 @@ public class Panel extends Component {
 		glPopMatrix();
 	}
 
+	/**
+	 * Adds a component to this panel
+	 * @param component
+	 */
 	public void addComponent(Component component) {
 		components.add(component);
 		component.setParent(this);
 	}
 	
+	/**
+	 * Removes a component from this panel
+	 * @param component
+	 */
 	public void removeComponent(Component component) {
 		components.remove(component);
 		component.setParent(null);

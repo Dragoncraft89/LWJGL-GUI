@@ -4,6 +4,16 @@ import static org.lwjgl.opengl.GL11.*;
 
 import gui.lwjgl.style.StyleTemplate;
 
+
+/**
+ * This is a label<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * labels<br>
+ * @author Florian
+ *
+ */
 public class Label extends Component {
 
 	protected String text;
@@ -15,6 +25,10 @@ public class Label extends Component {
 		addToGroup("labels");
 	}
 
+	/**
+	 * Sets the component's text
+	 * @param text
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}

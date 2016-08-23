@@ -4,6 +4,25 @@ import static org.lwjgl.opengl.GL11.*;
 
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a window<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * windows<br>
+ * <br>
+ * The panel has the groups:<br>
+ * all<br>
+ * panels<br>
+ * windows<br>
+ * <br>
+ * The label has the groups:<br>
+ * all<br>
+ * labels<br>
+ * windows<br>
+ * @author Florian
+ *
+ */
 public class Window extends Component {
 
 	private int offsetX;
@@ -14,6 +33,11 @@ public class Window extends Component {
 
 	private Label label;
 
+	/**
+	 * Constructor
+	 * @param contentPane
+	 * @param title
+	 */
 	public Window(Panel contentPane, String title) {
 		super(contentPane.centerX, contentPane.centerY - 12, contentPane.sizeX, contentPane.sizeY + 25);
 		this.contentPane = contentPane;
@@ -25,6 +49,10 @@ public class Window extends Component {
 		contentPane.addToGroup("windows");
 	}
 	
+	/**
+	 * Returns the windows content pane
+	 * @return the windows content pane
+	 */
 	public Panel getContentPane() {
 		return contentPane;
 	}

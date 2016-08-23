@@ -4,11 +4,28 @@ import static org.lwjgl.opengl.GL11.*;
 
 import gui.lwjgl.style.StyleTemplate;
 
+/**
+ * This is a simple button<br>
+ * <br>
+ * default groups:<br>
+ * all<br>
+ * buttons<br>
+ * @author Florian
+ *
+ */
 public class Button extends Component {
 	private String name;
 
 	private boolean highlight;
 
+	/**
+	 * Constructor
+	 * @param centerX
+	 * @param centerY
+	 * @param sizeX
+	 * @param sizeY
+	 * @param name
+	 */
 	public Button(int centerX, int centerY, int sizeX, int sizeY, String name) {
 		super(centerX, centerY, sizeX, sizeY);
 		this.name = name;
@@ -60,6 +77,10 @@ public class Button extends Component {
 		return false;
 	}
 
+	/**
+	 * Sets the button's text
+	 * @param name
+	 */
 	public void setText(String name) {
 		this.name = name;
 	}

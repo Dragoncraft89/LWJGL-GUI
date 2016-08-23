@@ -2,6 +2,16 @@ package gui.lwjgl.dialogs;
 
 import gui.lwjgl.components.GUI;
 
+/**
+ * The main class for creating dialogs<br>
+ * most methods are inherited from GUI.<br>
+ * It's just a bit inner logic to make dialogs work<br>
+ * 
+ * @see GUI
+ * 
+ * @author Florian
+ *
+ */
 public class Dialog extends GUI {
 	private DialogManager handler;
 	
