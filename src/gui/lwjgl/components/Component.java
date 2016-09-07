@@ -159,7 +159,7 @@ public abstract class Component {
 	 * Adds a ClickEventListener to this component
 	 * @param listener
 	 */
-	public void addEventListener(ClickEventListener listener) {
+	public void addClickEventListener(ClickEventListener listener) {
 		this.listener.add(listener);
 	}
 
@@ -347,6 +347,7 @@ public abstract class Component {
 		
 		if(button == 0 && !isPressed && isInComponent(x, y)) {
 			fireEvent(x, y, ClickEventListener.PRESSED);
+			isPressed = true;
 			return true;
 		}
 		

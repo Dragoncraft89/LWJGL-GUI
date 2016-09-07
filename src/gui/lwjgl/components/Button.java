@@ -14,9 +14,9 @@ import gui.lwjgl.style.StyleTemplate;
  *
  */
 public class Button extends Component {
-	private String name;
+	protected String name;
 
-	private boolean highlight;
+	protected boolean highlight;
 
 	/**
 	 * Constructor

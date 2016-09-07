@@ -67,6 +67,7 @@ public class ComponentTest extends Test {
 		});
 		TextField textfield = new TextField(110, 415, 200, 50);
 		Throbber throbber = new Throbber(320, 415, 50, 50);
+		Checkbox checkbox = new Checkbox(530, 35, 200, 50, "Checkboxasdfadf");
 		
 		center.addComponent(button);
 		center.addComponent(label);
@@ -76,6 +77,7 @@ public class ComponentTest extends Test {
 		center.addComponent(slider);
 		center.addComponent(textfield);
 		center.addComponent(throbber);
+		center.addComponent(checkbox);
 		
 		overlay.addComponent(center);
 		

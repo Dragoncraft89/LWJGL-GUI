@@ -49,3 +49,10 @@ multiline {
 multiline.slider, lists.slider {
 	background-color: darkgrey;
 }
+
+checkboxes {
+	background-color:#111111;
+	foreground-color:#111111;
+	checkbox-checked: "asset.themes.dark.checkbox_checked.png";
+	checkbox-unchecked: "asset.themes.dark.checkbox_unchecked.png";
+}

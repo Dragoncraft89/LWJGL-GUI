@@ -116,7 +116,9 @@ public class CSSParser {
 		case "list-color":style.setListColor(parseColor(value));break;
 		case "draw-border":style.setDrawBorder(asBoolean(value));break;
 		case "texture":style.setTexture(value.equals("none")?null:readTexture(asString(value)));break;
-		case "rotation-speed":style.setRotationSpeed(Float.parseFloat(value));
+		case "rotation-speed":style.setRotationSpeed(Float.parseFloat(value));break;
+		case "checkbox-checked":style.setCheckboxTextureEnabled(value.equals("none")?null:readTexture(asString(value)));break;
+		case "checkbox-unchecked":style.setCheckboxTextureDisabled(value.equals("none")?null:readTexture(asString(value)));break;
 		}
 	}
 

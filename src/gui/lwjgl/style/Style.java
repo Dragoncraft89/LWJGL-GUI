@@ -21,6 +21,9 @@ public class Style {
 	
 	private Value<Float> rotationSpeed = new Value<Float>();
 	
+	private Value<Texture> checkboxTextureEnabled = new Value<Texture>();
+	private Value<Texture> checkboxTextureDisabled = new Value<Texture>();
+	
 	/**
 	 * Sets the background color
 	 * @param r
@@ -97,6 +100,10 @@ public class Style {
 		setBorderColor(borderColor);
 	}
 
+	/**
+	 * Sets the border Color
+	 * @param borderColor
+	 */
 	public void setBorderColor(float[] borderColor) {
 		this.borderColor.setValue(borderColor);
 	}
@@ -144,6 +151,22 @@ public class Style {
 	 */
 	public void setRotationSpeed(float rotationSpeed) {
 		this.rotationSpeed.setValue(rotationSpeed);
+	}
+	
+	/**
+	 * Sets the texture for checked checkboxes
+	 * @param tex
+	 */
+	public void setCheckboxTextureEnabled(Texture tex) {
+		this.checkboxTextureEnabled.setValue(tex);
+	}
+	
+	/**
+	 * Sets the texture for unchecked checkboxes
+	 * @param tex
+	 */
+	public void setCheckboxTextureDisabled(Texture tex) {
+		this.checkboxTextureDisabled.setValue(tex);
 	}
 
 	/**
@@ -208,5 +231,21 @@ public class Style {
 	 */
 	public Value<Float> getRotationSpeed() {
 		return rotationSpeed;
+	}
+
+	/**
+	 * Returns the texture for checked checkboxes
+	 * @return the texture for checked checkboxes
+	 */
+	public Value<Texture> getCheckboxTextureEnabled() {
+		return checkboxTextureEnabled;
+	}
+
+	/**
+	 * Returns the texture for unchecked checkboxes
+	 * @return the texture for unchecked checkboxes
+	 */
+	public Value<Texture> getCheckboxTextureDisabled() {
+		return checkboxTextureDisabled;
 	}
 }

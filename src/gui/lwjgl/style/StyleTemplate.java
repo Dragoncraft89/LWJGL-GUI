@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import gui.lwjgl.components.Checkbox;
 import gui.lwjgl.components.Component;
 import gui.lwjgl.components.List;
 import gui.lwjgl.components.Throbber;
@@ -96,6 +97,33 @@ public class StyleTemplate {
 	 */
 	private Value<Float> getRotationSpeed(String group) {
 		return data.get(group).getRotationSpeed();
+	}
+	
+	private Value<Texture> getCheckboxTextureEnabled(String group) {
+		return data.get(group).getCheckboxTextureEnabled();
+	}
+
+	private Value<Texture> getCheckboxTextureDisabled(String group) {
+		return data.get(group).getCheckboxTextureDisabled();
+		}
+	
+	/**
+	 * Loads all properties for a Checkbox
+	 * @param checkbox
+	 */
+	public void load(Checkbox checkbox) {
+		if(parent != null)
+			parent.load(checkbox);
+		
+		for(String group : data.keySet()) {
+			String[] groups = group.split(",");
+			
+			if(!hasAtLeastOneGroup(checkbox, groups)) {
+				continue;
+			}
+			
+			loadProperties(checkbox, group);
+		}
 	}
 
 	/**
@@ -208,6 +236,18 @@ public class StyleTemplate {
 		if(rotationSpeed.isSet()) {
 			throbber.setRotationSpeed(rotationSpeed.getValue());
 		}
+	}
+	
+	private void loadProperties(Checkbox checkbox, String group) {
+		loadProperties((Component) checkbox, group);
+		
+		Value<Texture> texOn = getCheckboxTextureEnabled(group);
+		Value<Texture> texOff = getCheckboxTextureDisabled(group);
+		
+		if(texOn.isSet())
+			checkbox.setTextureEnabled(texOn.getValue());
+		if(texOff.isSet())
+			checkbox.setTextureDisabled(texOff.getValue());
 	}
 
 	private boolean hasAtLeastOneGroup(Component component, String[] groups) {
