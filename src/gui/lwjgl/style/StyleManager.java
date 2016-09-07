@@ -3,6 +3,8 @@ package gui.lwjgl.style;
 import java.io.IOException;
 import java.util.Stack;
 
+import gui.lwjgl.dialogs.DialogManager;
+
 /**
  * This class manages all loaded stylesheets.<br>
  * By default the stylesheet themes.bright is loaded.<br>
@@ -35,7 +37,7 @@ public class StyleManager {
 	}
 
 	/**
-	 * Returns the last element from the stack
+	 * Returns the last element from the stack without removing it
 	 * @return
 	 */
 	public static StyleTemplate getTemplate() {
@@ -49,6 +51,8 @@ public class StyleManager {
 		currentTemplate.clear();
 		
 		currentTemplate.push(defaultTemplate);
+		
+		updateGUI();
 	}
 	
 	/**
@@ -58,6 +62,8 @@ public class StyleManager {
 	public static void pushTemplate(StyleTemplate template) {
 		template.setParent(currentTemplate.peek());
 		currentTemplate.push(template);
+		
+		updateGUI();
 	}
 	
 	/**
@@ -65,6 +71,14 @@ public class StyleManager {
 	 * @return
 	 */
 	public static StyleTemplate popTemplate() {
-		return currentTemplate.pop();
+		StyleTemplate template = currentTemplate.pop();
+		
+		updateGUI();
+		
+		return template;
+	}
+	
+	private static void updateGUI() {
+		DialogManager.updateStyle(getTemplate());
 	}
 }

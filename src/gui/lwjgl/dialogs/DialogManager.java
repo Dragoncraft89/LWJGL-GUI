@@ -11,6 +11,7 @@ import org.lwjgl.util.glu.GLU;
 
 import gui.lwjgl.components.GUI;
 import gui.lwjgl.listener.EventCallBack;
+import gui.lwjgl.style.StyleTemplate;
 
 /**
  * This class handles all open dialogs and the overlay<br>
@@ -18,7 +19,7 @@ import gui.lwjgl.listener.EventCallBack;
  * For Legacy lwjgl (2.x) there is only one instance,<br>
  * which can be accessed per {@link #getDefault()}<br>
  * or via the xxxDefault() static methods<br>
- * 
+ * <br>
  * <b>Note:</b> There need to be called two methods in the main rendering loop:<br>
  * {@link #paintDefault()} or {@link #paint()}<br>
  * {@link #dispatchEventsDefault()} or {@link #dispatchEvents()}<br>
@@ -281,5 +282,18 @@ public class DialogManager {
 			instance = new DialogManager();
 		
 		return instance;
+	}
+
+	/**
+	 * Called by the StyleManager class, when the style is changed
+	 * @param template
+	 */
+	public static void updateStyle(StyleTemplate template) {
+		DialogManager manager = getDefault();
+		
+		manager.overlay.loadTemplate(template);
+		for(int i = 0; i < manager.activeDialogs.size(); i++) {
+			manager.activeDialogs.get(i).loadTemplate(template);
+		}
 	}
 }
