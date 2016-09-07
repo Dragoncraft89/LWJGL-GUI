@@ -25,7 +25,7 @@ labels {
 }
 
 buttons {
-	background-color: #00aa00;
+	background-color: #00dd00;
 	foreground-color: #00ff00;
 	draw-border: true;
 	texture: "asset.themes.bright.button.png";
