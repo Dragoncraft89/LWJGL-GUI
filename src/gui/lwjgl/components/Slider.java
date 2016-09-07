@@ -73,8 +73,8 @@ public class Slider extends Component {
 		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2, 0);
 		
 		int d = maxValue + 1;
-		float posX = sizeX / (float) d;
-		float posY = sizeY / (float) d;
+		float posX = (sizeX - MINIMAL_SIZE) / (float) d;
+		float posY = (sizeY - MINIMAL_SIZE) / (float) d;
 		
 		bindTexture();
 
