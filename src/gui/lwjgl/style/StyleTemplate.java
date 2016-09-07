@@ -9,6 +9,7 @@ import gui.lwjgl.components.Component;
 import gui.lwjgl.components.List;
 import gui.lwjgl.components.Throbber;
 import gui.lwjgl.util.Texture;
+import gui.lwjgl.util.Value;
 
 /**
  * Stores all data from a css Stylesheet

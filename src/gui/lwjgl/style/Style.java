@@ -1,6 +1,7 @@
 package gui.lwjgl.style;
 
 import gui.lwjgl.util.Texture;
+import gui.lwjgl.util.Value;
 
 /**
  * This class stores all information that can be obtained for a group

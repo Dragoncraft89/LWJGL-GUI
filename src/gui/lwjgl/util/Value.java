@@ -1,4 +1,4 @@
-package gui.lwjgl.style;
+package gui.lwjgl.util;
 
 /**
  * This class stores a value of the datatype T<br>

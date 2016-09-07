@@ -291,7 +291,8 @@ public class DialogManager {
 	public static void updateStyle(StyleTemplate template) {
 		DialogManager manager = getDefault();
 		
-		manager.overlay.loadTemplate(template);
+		if(manager.overlay != null)
+			manager.overlay.loadTemplate(template);
 		for(int i = 0; i < manager.activeDialogs.size(); i++) {
 			manager.activeDialogs.get(i).loadTemplate(template);
 		}
