@@ -8,6 +8,7 @@ import gui.lwjgl.components.*;
 import gui.lwjgl.dialogs.Dialog;
 import gui.lwjgl.dialogs.DialogManager;
 import gui.lwjgl.listener.ChangeEventListener;
+import gui.lwjgl.listener.ClickEventListener;
 import gui.lwjgl.style.ParsingException;
 import gui.lwjgl.style.StyleManager;
 import gui.lwjgl.style.StyleTemplate;
@@ -15,23 +16,33 @@ import gui.lwjgl.util.Texture;
 import test.Test;
 
 public class ComponentTest extends Test {
-	
-	private String theme = "themes.dark";
 
 	public ComponentTest() {
-		try {
-			StyleManager.pushTemplate(StyleTemplate.loadDefaultStyle(theme));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ParsingException e1) {
-			e1.printStackTrace();
-		}
 		
 		GUI overlay = new GUI();
 		
 		Panel center = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 700, 500);
 		
-		Button button = new Button(110, 35, 200, 50, "Button");
+		Button button = new Button(110, 35, 200, 50, "toggle theme");
+		
+		button.addClickEventListener(new ClickEventListener() {
+			private int i;
+			private String[] themes = {"themes.bright", "themes.dark"};
+			@Override
+			public void action(Component component, int x, int y, int type) {
+				if(type != RELEASED)
+					return;
+				
+				try {
+					StyleManager.pushTemplate(StyleTemplate.loadDefaultStyle(themes[++i % themes.length]));
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ParsingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		});
 		
 		ListElement l = new ListElement(){
 
@@ -67,7 +78,7 @@ public class ComponentTest extends Test {
 		});
 		TextField textfield = new TextField(110, 415, 200, 50);
 		Throbber throbber = new Throbber(320, 415, 50, 50);
-		Checkbox checkbox = new Checkbox(530, 35, 200, 50, "Checkboxasdfadf");
+		Checkbox checkbox = new Checkbox(530, 35, 200, 50, "Checkbox");
 		
 		center.addComponent(button);
 		center.addComponent(label);

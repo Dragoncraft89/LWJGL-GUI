@@ -8,6 +8,7 @@ all {
 
 panels {
 	background-color: #222222;
+	texture: "asset.themes.dark.panel.png";
 }
 
 textfields {
