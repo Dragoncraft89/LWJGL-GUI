@@ -53,12 +53,8 @@ public class Checkbox extends Button {
 		int texHeight = sizeY;
 		
 		if(checked && texOn != null) {
-			texWidth = (texOn.getWidth() * sizeY) / texOn.getHeight();
-			texHeight = sizeY;
 			texOn.bind();
 		} else if(!checked && texOff != null) {
-			texWidth = (texOff.getWidth() * sizeY) / texOff.getHeight();
-			texHeight = sizeY;
 			texOff.bind();
 		}
 		glBegin(GL_QUADS);
