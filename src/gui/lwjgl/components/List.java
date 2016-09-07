@@ -195,6 +195,16 @@ public class List extends Component {
 		
 		glPopMatrix();
 	}
+	
+	@Override
+	public boolean keyDown(GUI gui, int eventKey, char character) {
+		return panel.keyDown(gui, eventKey, character) || super.keyDown(gui, eventKey, character);
+	}
+
+	@Override
+	public boolean keyUp(GUI gui, int eventKey, char character) {
+		return panel.keyUp(gui, eventKey, character) || super.keyUp(gui, eventKey, character);
+	}
 
 	@Override
 	public boolean mouseDown(GUI gui, int button, int x, int y) {
@@ -211,6 +221,26 @@ public class List extends Component {
 		}
 
 		return false;
+	}
+	
+	@Override
+	public boolean mouseUp(GUI gui, int button, int x, int y) {
+		return panel.mouseUp(gui, button, x, y) || super.mouseUp(gui, button, x, y);
+	}
+	
+	@Override
+	public boolean mouseWheelChanged(GUI gui, int mouseWheel, int x, int y) {
+		if (isInComponent(x, y)) {
+			slider.setValue(slider.getValue() - mouseWheel / 120);
+			return true;
+		}
+
+		return super.mouseWheelChanged(gui, mouseWheel, x, y);
+	}
+	
+	@Override
+	public boolean mouseMoved(GUI gui, int x, int y, int dX, int dY) {
+		return panel.mouseMoved(gui, x, y, dX, dY) || super.mouseMoved(gui, x, y, dX, dY);
 	}
 
 	/**
@@ -261,16 +291,6 @@ public class List extends Component {
 	 */
 	public void setSelected(int selected) {
 		this.selected = Math.min(selected, elements.length);
-	}
-	
-	@Override
-	public boolean mouseWheelChanged(GUI gui, int mouseWheel, int x, int y) {
-		if (isInComponent(x, y)) {
-			slider.setValue(slider.getValue() - mouseWheel / 120);
-			return true;
-		}
-
-		return super.mouseWheelChanged(gui, mouseWheel, x, y);
 	}
 	
 	public void drawString(LWJGLFont font, String text, int leftX, int leftY, float r, float g, float b, float a) {

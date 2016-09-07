@@ -165,13 +165,13 @@ public class Slider extends Component {
 			gui.requestFocus(this);
 
 			int d = maxValue + 1;
-			float dX = sizeX / (float) d;
-			float dY = sizeY / (float) d;
+			float dX = (sizeX- MINIMAL_SIZE) / (float) d;
+			float dY = (sizeY - MINIMAL_SIZE) / (float) d;
 
 			if (horizontal) {
-				value = (int) ((x - centerX + sizeX / 2) / dX - 1.5f);
+				value = (int) ((x - centerX + sizeX / 2) / dX);
 			} else {
-				value = (int) ((Display.getHeight() - y - centerY + sizeY / 2) / dY - 1.5f);
+				value = (int) ((Display.getHeight() - y - centerY + sizeY / 2) / dY);
 			}
 
 			checkState(oldvalue);
@@ -212,13 +212,13 @@ public class Slider extends Component {
 			int oldvalue = value;
 			
 			int d = maxValue + 1;
-			float sliderDX = sizeX / (float) d;
-			float sliderDY = sizeY / (float) d;
+			float sliderdX = (sizeX- MINIMAL_SIZE) / (float) d;
+			float sliderdY = (sizeY - MINIMAL_SIZE) / (float) d;
 
 			if (horizontal) {
-				value = (int) ((x - centerX + sizeX / 2) / sliderDX - 1.5f);
+				value = (int) ((x - centerX + sizeX / 2) / sliderdX);
 			} else {
-				value = (int) ((Display.getHeight() - y - centerY + sizeY / 2) / sliderDY - 1.5f);
+				value = (int) ((Display.getHeight() - y - centerY + sizeY / 2) / sliderdY);
 			}
 
 			checkState(oldvalue);
