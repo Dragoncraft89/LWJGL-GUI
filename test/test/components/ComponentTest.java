@@ -23,7 +23,7 @@ public class ComponentTest extends Test {
 		
 		Panel center = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 700, 500);
 		
-		Button button = new Button(110, 35, 200, 50, "toggle theme");
+		Button button = new Button(110, 35, 200, 50, "themes.bright");
 		
 		button.addClickEventListener(new ClickEventListener() {
 			private int i;
@@ -40,6 +40,8 @@ public class ComponentTest extends Test {
 				} catch (ParsingException e) {
 					e.printStackTrace();
 				}
+				
+				button.setText(themes[i % themes.length]);
 			}
 			
 		});

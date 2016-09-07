@@ -38,7 +38,7 @@ lists {
 
 progressbars {
 	draw-border: true;
-	foreground-color: #0000aa;
+	foreground-color: #0000ff;
 	texture: "asset.themes.bright.progressbar.png";
 }
 
@@ -54,7 +54,7 @@ slider {
 
 throbbers {
 	texture: "asset.themes.bright.throbber.png";
-	foreground-color: #0000dd;
+	foreground-color: #00dd00;
 	rotation-speed: 20;
 }
 
@@ -71,4 +71,5 @@ checkboxes {
 	foreground-color:#00000000;
 	checkbox-checked: "asset.themes.bright.checkbox_checked.png";
 	checkbox-unchecked: "asset.themes.bright.checkbox_unchecked.png";
+	draw-border: false;
 }

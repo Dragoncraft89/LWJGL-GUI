@@ -16,7 +16,7 @@ textfields {
 }
 
 labels {
-	background-color:#111111;
+	background-color:#00000000;
 }
 
 buttons {
@@ -43,6 +43,10 @@ windows.labels {
 	background-color: black;
 }
 
+windows.panels {
+	texture:none;
+}
+
 multiline {
 	draw-border: true;
 }
@@ -52,8 +56,9 @@ multiline.slider, lists.slider {
 }
 
 checkboxes {
-	background-color:#111111;
-	foreground-color:#111111;
+	background-color:#00000000;
+	foreground-color:#00000000;
 	checkbox-checked: "asset.themes.dark.checkbox_checked.png";
 	checkbox-unchecked: "asset.themes.dark.checkbox_unchecked.png";
+	draw-border:false;
 }
