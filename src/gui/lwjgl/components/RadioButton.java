@@ -7,46 +7,39 @@ import gui.lwjgl.style.StyleTemplate;
 import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Texture;
 
-/**
- * This class represents a checkbox<br>
- * <br>
- * default groups:<br>
- * all<br>
- * buttons<br>
- * checkboxes<br>
- * @author Florian
- *
- */
-public class Checkbox extends Component {
+public class RadioButton extends Component {
 	
-	class CheckboxListener implements ClickEventListener{
+	class RadioButtonListener implements ClickEventListener{
 		@Override
 		public void action(Component component, int x, int y, int type) {
 			if(type != RELEASED)
 				return;
 			
-			Checkbox checkbox = (Checkbox) component;
-			checkbox.setChecked(!checkbox.isChecked());
+			RadioButton button = (RadioButton) component;
+			button.setSelected(true);
 		}
 
 	}
 	
 	private boolean highlight;
-	private boolean checked;
-	private String name;
+	private boolean selected;
+	
+	private RadioButtonGroup group;
 	
 	private Texture texOn;
 	private Texture texOff;
 
-	public Checkbox(int centerX, int centerY, int sizeX, int sizeY, String name) {
+	private String name;
+
+	public RadioButton(int centerX, int centerY, int sizeX, int sizeY, String name) {
 		super(centerX, centerY, sizeX, sizeY);
 		
 		this.name = name;
-		addToGroup("checkboxes");
+		addToGroup("radiobuttons");
 		
-		addClickEventListener(new CheckboxListener());
+		addClickEventListener(new RadioButtonListener());
 	}
-
+	
 	@Override
 	public void paint(float delta) {
 		glPushMatrix();
@@ -55,9 +48,9 @@ public class Checkbox extends Component {
 		int texWidth = sizeY;
 		int texHeight = sizeY;
 		
-		if(checked && texOn != null) {
+		if(selected && texOn != null) {
 			texOn.bind();
-		} else if(!checked && texOff != null) {
+		} else if(!selected && texOff != null) {
 			texOff.bind();
 		}
 		glBegin(GL_QUADS);
@@ -129,7 +122,7 @@ public class Checkbox extends Component {
 	}
 
 	/**
-	 * Sets the checked texture for this checkbox
+	 * Sets the selected texture for this radio button
 	 * @param tex
 	 */
 	public void setTextureEnabled(Texture tex) {
@@ -137,7 +130,7 @@ public class Checkbox extends Component {
 	}
 
 	/**
-	 * Sets the unchecked texture for this checkbox
+	 * Sets the unselected texture for this radio button
 	 * @param tex
 	 */
 	public void setTextureDisabled(Texture tex) {
@@ -145,19 +138,33 @@ public class Checkbox extends Component {
 	}
 	
 	/**
-	 * Sets if the checkbox is checked
-	 * @param checked
+	 * Sets if the radio button is selected and deselects the active radio button from the {@link RadioButtonGroup}
+	 * @param selected
 	 */
-	public void setChecked(boolean checked) {
-		this.checked = checked;
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+		
+		if(selected) {
+			group.select(this);
+		}
 	}
 	
 	/**
-	 * Checks if the checkbox is checked
-	 * @return true if the checkbox is checked, false otherwise
+	 * Checks if the radio button is selected
+	 * @return true if the radio button is selected, false otherwise
 	 */
-	public boolean isChecked() {
-		return checked;
+	public boolean isSelected() {
+		return selected;
+	}
+
+	/**
+	 * Sets the RadioButtonGroup for this component<br>
+	 * <br>
+	 * <b>This method should not be called, refer to {@link RadioButtonGroup#addToGroup(RadioButton)}</b>
+	 * @param group
+	 */
+	public void setRadioButtonGroup(RadioButtonGroup group) {
+		this.group = group;
 	}
 	
 	@Override

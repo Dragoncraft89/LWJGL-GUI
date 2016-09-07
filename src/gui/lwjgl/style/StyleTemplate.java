@@ -8,6 +8,7 @@ import java.util.HashMap;
 import gui.lwjgl.components.Checkbox;
 import gui.lwjgl.components.Component;
 import gui.lwjgl.components.List;
+import gui.lwjgl.components.RadioButton;
 import gui.lwjgl.components.Throbber;
 import gui.lwjgl.util.Texture;
 import gui.lwjgl.util.Value;
@@ -99,12 +100,12 @@ public class StyleTemplate {
 		return data.get(group).getRotationSpeed();
 	}
 	
-	private Value<Texture> getCheckboxTextureEnabled(String group) {
-		return data.get(group).getCheckboxTextureEnabled();
+	private Value<Texture> getTextureEnabled(String group) {
+		return data.get(group).getTextureEnabled();
 	}
 
-	private Value<Texture> getCheckboxTextureDisabled(String group) {
-		return data.get(group).getCheckboxTextureDisabled();
+	private Value<Texture> getTextureDisabled(String group) {
+		return data.get(group).getTextureDisabled();
 		}
 	
 	/**
@@ -123,6 +124,21 @@ public class StyleTemplate {
 			}
 			
 			loadProperties(checkbox, group);
+		}
+	}
+	
+	public void load(RadioButton button) {
+		if(parent != null)
+			parent.load(button);
+		
+		for(String group : data.keySet()) {
+			String[] groups = group.split(",");
+			
+			if(!hasAtLeastOneGroup(button, groups)) {
+				continue;
+			}
+			
+			loadProperties(button, group);
 		}
 	}
 
@@ -241,13 +257,25 @@ public class StyleTemplate {
 	private void loadProperties(Checkbox checkbox, String group) {
 		loadProperties((Component) checkbox, group);
 		
-		Value<Texture> texOn = getCheckboxTextureEnabled(group);
-		Value<Texture> texOff = getCheckboxTextureDisabled(group);
+		Value<Texture> texOn = getTextureEnabled(group);
+		Value<Texture> texOff = getTextureDisabled(group);
 		
 		if(texOn.isSet())
 			checkbox.setTextureEnabled(texOn.getValue());
 		if(texOff.isSet())
 			checkbox.setTextureDisabled(texOff.getValue());
+	}
+	
+	private void loadProperties(RadioButton button, String group) {
+		loadProperties((Component) button, group);
+		
+		Value<Texture> texOn = getTextureEnabled(group);
+		Value<Texture> texOff = getTextureDisabled(group);
+		
+		if(texOn.isSet())
+			button.setTextureEnabled(texOn.getValue());
+		if(texOff.isSet())
+			button.setTextureDisabled(texOff.getValue());
 	}
 
 	private boolean hasAtLeastOneGroup(Component component, String[] groups) {

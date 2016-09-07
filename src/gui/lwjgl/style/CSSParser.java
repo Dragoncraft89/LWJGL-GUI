@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 
+import gui.lwjgl.util.Logger;
 import gui.lwjgl.util.Texture;
 
 /**
@@ -117,8 +118,9 @@ public class CSSParser {
 		case "draw-border":style.setDrawBorder(asBoolean(value));break;
 		case "texture":style.setTexture(value.equals("none")?null:readTexture(asString(value)));break;
 		case "rotation-speed":style.setRotationSpeed(Float.parseFloat(value));break;
-		case "checkbox-checked":style.setCheckboxTextureEnabled(value.equals("none")?null:readTexture(asString(value)));break;
-		case "checkbox-unchecked":style.setCheckboxTextureDisabled(value.equals("none")?null:readTexture(asString(value)));break;
+		case "texture-selected":style.setTextureEnabled(value.equals("none")?null:readTexture(asString(value)));break;
+		case "texture-unselected":style.setTextureDisabled(value.equals("none")?null:readTexture(asString(value)));break;
+		default:Logger.log("Unsuspected attribute name: " + attribName);
 		}
 	}
 

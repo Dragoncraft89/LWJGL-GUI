@@ -55,10 +55,18 @@ multiline.slider, lists.slider {
 	background-color: darkgrey;
 }
 
-checkboxes {
+checkboxes, radiobuttons {
 	background-color:#00000000;
 	foreground-color:#00000000;
-	checkbox-checked: "asset.themes.dark.checkbox_checked.png";
-	checkbox-unchecked: "asset.themes.dark.checkbox_unchecked.png";
 	draw-border:false;
+}
+
+checkboxes {
+	texture-selected: "asset.themes.dark.checkbox_checked.png";
+	texture-unselected: "asset.themes.dark.checkbox_unchecked.png";
+}
+
+radiobuttons {
+	texture-selected: "asset.themes.dark.radiobutton_selected.png";
+	texture-unselected: "asset.themes.dark.radiobutton_unselected.png";
 }

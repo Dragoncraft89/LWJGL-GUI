@@ -157,7 +157,7 @@ public class Style {
 	 * Sets the texture for checked checkboxes
 	 * @param tex
 	 */
-	public void setCheckboxTextureEnabled(Texture tex) {
+	public void setTextureEnabled(Texture tex) {
 		this.checkboxTextureEnabled.setValue(tex);
 	}
 	
@@ -165,7 +165,7 @@ public class Style {
 	 * Sets the texture for unchecked checkboxes
 	 * @param tex
 	 */
-	public void setCheckboxTextureDisabled(Texture tex) {
+	public void setTextureDisabled(Texture tex) {
 		this.checkboxTextureDisabled.setValue(tex);
 	}
 
@@ -237,7 +237,7 @@ public class Style {
 	 * Returns the texture for checked checkboxes
 	 * @return the texture for checked checkboxes
 	 */
-	public Value<Texture> getCheckboxTextureEnabled() {
+	public Value<Texture> getTextureEnabled() {
 		return checkboxTextureEnabled;
 	}
 
@@ -245,7 +245,7 @@ public class Style {
 	 * Returns the texture for unchecked checkboxes
 	 * @return the texture for unchecked checkboxes
 	 */
-	public Value<Texture> getCheckboxTextureDisabled() {
+	public Value<Texture> getTextureDisabled() {
 		return checkboxTextureDisabled;
 	}
 }

@@ -66,10 +66,18 @@ windows.panels {
 	texture: none;
 }
 
-checkboxes {
+checkboxes, radiobuttons {
 	background-color:#00000000;
 	foreground-color:#00000000;
-	checkbox-checked: "asset.themes.bright.checkbox_checked.png";
-	checkbox-unchecked: "asset.themes.bright.checkbox_unchecked.png";
 	draw-border: false;
+}
+
+checkboxes {
+	texture-selected: "asset.themes.bright.checkbox_checked.png";
+	texture-unselected: "asset.themes.bright.checkbox_unchecked.png";
+}
+
+radiobuttons {
+	texture-selected: "asset.themes.bright.radiobutton_selected.png";
+	texture-unselected: "asset.themes.bright.radiobutton_unselected.png";
 }

@@ -82,6 +82,15 @@ public class ComponentTest extends Test {
 		Throbber throbber = new Throbber(320, 415, 50, 50);
 		Checkbox checkbox = new Checkbox(530, 35, 200, 50, "Checkbox");
 		
+		RadioButton r1 = new RadioButton(530, 95, 200, 50, "Radio1");
+		RadioButton r2 = new RadioButton(530, 155, 200, 50, "Radio2");
+		RadioButton r3 = new RadioButton(530, 215, 200, 50, "Radio3");
+		
+		RadioButtonGroup group = new RadioButtonGroup();
+		group.addToGroup(r1);
+		group.addToGroup(r2);
+		group.addToGroup(r3);
+		
 		center.addComponent(button);
 		center.addComponent(label);
 		center.addComponent(list);
@@ -91,6 +100,10 @@ public class ComponentTest extends Test {
 		center.addComponent(textfield);
 		center.addComponent(throbber);
 		center.addComponent(checkbox);
+		
+		center.addComponent(r1);
+		center.addComponent(r2);
+		center.addComponent(r3);
 		
 		overlay.addComponent(center);
 		
