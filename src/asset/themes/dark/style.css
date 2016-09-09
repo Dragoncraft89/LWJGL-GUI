@@ -75,5 +75,6 @@ radiobuttons {
 
 tab {
 	texture: "asset.themes.dark.tab.png";
-	foreground-color: green;
+	background-color: grey;
+	foreground-color: blue;
 }
