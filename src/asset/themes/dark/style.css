@@ -70,3 +70,7 @@ radiobuttons {
 	texture-selected: "asset.themes.dark.radiobutton_selected.png";
 	texture-unselected: "asset.themes.dark.radiobutton_unselected.png";
 }
+
+tab {
+	texture: "asset.themes.dark.tab.png";
+}

@@ -1,9 +1,13 @@
 package gui.lwjgl.style;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 
+import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Logger;
 import gui.lwjgl.util.Texture;
 
@@ -120,6 +124,7 @@ public class CSSParser {
 		case "rotation-speed":style.setRotationSpeed(Float.parseFloat(value));break;
 		case "texture-selected":style.setTextureEnabled(value.equals("none")?null:readTexture(asString(value)));break;
 		case "texture-unselected":style.setTextureDisabled(value.equals("none")?null:readTexture(asString(value)));break;
+		case "font":style.setFont(readFont(value));break;
 		default:Logger.log("Unsuspected attribute name: " + attribName);
 		}
 	}
@@ -144,6 +149,35 @@ public class CSSParser {
 			return false;
 		
 		throw new ParsingException("Boolean expected, got \'" + s + "\'");
+	}
+	
+	private LWJGLFont readFont(String resourceName) {
+		if(resourceName.matches("^(\\w+?\\.){2,}(\\w+?)$")) {
+			String extension = resourceName.substring(resourceName.lastIndexOf('.'));
+			resourceName = resourceName.substring(0, resourceName.lastIndexOf('.'));
+			String path = "/" + resourceName.replace('.', '/') + extension;
+			
+			try {
+				return new LWJGLFont(Font.createFont(extension.equals(".ttf") || extension.equals(".ttc")?Font.TRUETYPE_FONT:Font.TYPE1_FONT, CSSParser.class.getResourceAsStream(path)));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(resourceName.matches("^(\\w+?\\.){1,}(\\w+?)$")) {
+			try {
+				String extension = resourceName.substring(resourceName.lastIndexOf('.'));
+				return new LWJGLFont(Font.createFont(extension.equals(".ttf") || extension.equals(".ttc")?Font.TRUETYPE_FONT:Font.TYPE1_FONT, new File(resourceName)));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return new LWJGLFont(Font.decode(resourceName));
 	}
 	
 	private Texture readTexture(String resourceName) {

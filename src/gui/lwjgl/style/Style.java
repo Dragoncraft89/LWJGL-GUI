@@ -1,5 +1,6 @@
 package gui.lwjgl.style;
 
+import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Texture;
 import gui.lwjgl.util.Value;
 
@@ -18,6 +19,7 @@ public class Style {
 	private Value<Boolean> drawBorder = new Value<Boolean>();
 	
 	private Value<Texture> texture = new Value<Texture>();
+	private Value<LWJGLFont> font = new Value<LWJGLFont>();
 	
 	private Value<Float> rotationSpeed = new Value<Float>();
 	
@@ -170,6 +172,14 @@ public class Style {
 	}
 
 	/**
+	 * Sets the font
+	 * @param readFont
+	 */
+	public void setFont(LWJGLFont font) {
+		this.font.setValue(font);
+	}
+
+	/**
 	 * Returns the backgroundColor
 	 * @return the backgroundColor
 	 */
@@ -247,5 +257,13 @@ public class Style {
 	 */
 	public Value<Texture> getTextureDisabled() {
 		return checkboxTextureDisabled;
+	}
+	
+	/**
+	 * Returns the font
+	 * @return
+	 */
+	public Value<LWJGLFont> getFont() {
+		return font;
 	}
 }

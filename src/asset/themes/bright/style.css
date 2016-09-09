@@ -4,6 +4,7 @@ all {
 	text-color: black;
 	border-color: black;
 	draw-border: false;
+	font: Arial plain 20;
 }
 
 windows {
@@ -59,6 +60,7 @@ throbbers {
 }
 
 windows.titlebar {
+	font: Courier bold 22;
 	background-color: #00ddff;
 }
 
@@ -80,4 +82,8 @@ checkboxes {
 radiobuttons {
 	texture-selected: "asset.themes.bright.radiobutton_selected.png";
 	texture-unselected: "asset.themes.bright.radiobutton_unselected.png";
+}
+
+tab {
+	texture: "asset.themes.bright.tab.png";
 }

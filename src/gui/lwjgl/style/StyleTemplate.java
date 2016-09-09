@@ -10,6 +10,7 @@ import gui.lwjgl.components.Component;
 import gui.lwjgl.components.List;
 import gui.lwjgl.components.RadioButton;
 import gui.lwjgl.components.Throbber;
+import gui.lwjgl.util.LWJGLFont;
 import gui.lwjgl.util.Texture;
 import gui.lwjgl.util.Value;
 
@@ -38,7 +39,7 @@ public class StyleTemplate {
 	 * Returns the backgroundColor
 	 * @return the backgroundColor
 	 */
-	public Value<float[]> getBackgroundColor(String group) {
+	private Value<float[]> getBackgroundColor(String group) {
 		return data.get(group).getBackgroundColor();
 	}
 
@@ -46,7 +47,7 @@ public class StyleTemplate {
 	 * Returns the foregroundColor
 	 * @return the foregroundColor
 	 */
-	public Value<float[]> getForegroundColor(String group) {
+	private Value<float[]> getForegroundColor(String group) {
 		return data.get(group).getForegroundColor();
 	}
 
@@ -54,7 +55,7 @@ public class StyleTemplate {
 	 * Returns the textColor
 	 * @return the textColor
 	 */
-	public Value<float[]> getTextColor(String group) {
+	private Value<float[]> getTextColor(String group) {
 		return data.get(group).getTextColor();
 	}
 
@@ -62,7 +63,7 @@ public class StyleTemplate {
 	 * Returns the borderColor
 	 * @return the borderColor
 	 */
-	public Value<float[]> getBorderColor(String group) {
+	private Value<float[]> getBorderColor(String group) {
 		return data.get(group).getBorderColor();
 	}
 
@@ -83,6 +84,14 @@ public class StyleTemplate {
 	}
 	
 	/**
+	 * Returns the font
+	 * @return
+	 */
+	private Value<LWJGLFont> getFont(String group){
+		return data.get(group).getFont();
+	}
+	
+	/**
 	 * Returns if the border should be drawn
 	 * @param group
 	 * @return true if the border should be drawn, false otherwise
@@ -100,13 +109,23 @@ public class StyleTemplate {
 		return data.get(group).getRotationSpeed();
 	}
 	
+	/**
+	 * Returns the texture for checked/selected checkboxes/radiobuttons
+	 * @param group
+	 * @return
+	 */
 	private Value<Texture> getTextureEnabled(String group) {
 		return data.get(group).getTextureEnabled();
 	}
 
+	/**
+	 * Returns the texture for unchecked/unselected checkboxes/radiobuttons
+	 * @param group
+	 * @return
+	 */
 	private Value<Texture> getTextureDisabled(String group) {
 		return data.get(group).getTextureDisabled();
-		}
+	}
 	
 	/**
 	 * Loads all properties for a Checkbox
@@ -127,6 +146,10 @@ public class StyleTemplate {
 		}
 	}
 	
+	/**
+	 * Loads all properties for a RadioButton
+	 * @param button
+	 */
 	public void load(RadioButton button) {
 		if(parent != null)
 			parent.load(button);
@@ -208,6 +231,7 @@ public class StyleTemplate {
 		Value<Boolean> drawBorder = getDrawBorder(group);
 			
 		Value<Texture> tex = getTexture(group);
+		Value<LWJGLFont> font = getFont(group);
 		
 		if(background.isSet()) {
 			float[] b = background.getValue();
@@ -231,6 +255,9 @@ public class StyleTemplate {
 
 		if(tex.isSet())
 			component.setTexture(tex.getValue());
+		
+		if(font.isSet())
+			component.setFont(font.getValue());
 	}
 
 	private void loadProperties(List list, String group) {

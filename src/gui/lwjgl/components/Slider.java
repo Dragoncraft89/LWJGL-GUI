@@ -19,7 +19,7 @@ import gui.lwjgl.style.StyleTemplate;
  *
  */
 public class Slider extends Component {
-	private static final int MINIMAL_SIZE = 5;
+	private static final int MINIMAL_SIZE = 2;
 	
 	private int value;
 
@@ -102,12 +102,12 @@ public class Slider extends Component {
 		if (horizontal) {
 			glVertex2f((value) * posX, 0);
 			glVertex2f((value) * posX, sizeY);
-			glVertex2f(Math.max((value + 1) * posX, value * posX + MINIMAL_SIZE), sizeY);
-			glVertex2f(Math.max((value + 1) * posX, value * posX + MINIMAL_SIZE), 0);
+			glVertex2f((value + 1) * posX + MINIMAL_SIZE, sizeY);
+			glVertex2f((value + 1) * posX + MINIMAL_SIZE, 0);
 		} else {
 			glVertex2f(0, (value) * posY);
-			glVertex2f(0, Math.max((value + 1) * posY, value * posY + MINIMAL_SIZE));
-			glVertex2f(sizeX, Math.max((value + 1) * posY, value * posY + MINIMAL_SIZE));
+			glVertex2f(0, (value + 1) * posY + MINIMAL_SIZE);
+			glVertex2f(sizeX, (value + 1) * posY + MINIMAL_SIZE);
 			glVertex2f(sizeX, (value) * posY);
 		}
 		glEnd();
