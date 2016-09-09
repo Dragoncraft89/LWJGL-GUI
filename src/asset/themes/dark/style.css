@@ -4,6 +4,7 @@ all {
 	text-color: white;
 	border-color: white;
 	draw-border: false;
+	font: Courier New plain 20;
 }
 
 windows {
@@ -37,6 +38,7 @@ lists {
 progressbars, slider {
 	draw-border: true;
 	foreground-color: #000088;
+	background-color: #aaaaaa;
 }
 
 windows.titlebar {
@@ -52,7 +54,7 @@ multiline {
 }
 
 multiline.slider, lists.slider {
-	background-color: darkgrey;
+	background-color: white;
 }
 
 checkboxes, radiobuttons {
