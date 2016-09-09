@@ -20,6 +20,9 @@ import gui.lwjgl.style.StyleTemplate;
  * all<br>
  * labels<br>
  * windows<br>
+ * titlebar<br>
+ * <br>
+ * All components that are added to the window also gain the group windows through {@link Panel#addToGroup(String)}<br>
  * @author Florian
  *
  */
@@ -46,6 +49,7 @@ public class Window extends Component {
 		
 		addToGroup("windows");
 		label.addToGroup("windows");
+		label.addToGroup("titlebar");
 		contentPane.addToGroup("windows");
 	}
 	

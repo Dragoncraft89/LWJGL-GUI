@@ -120,8 +120,13 @@ public class ComponentTest extends Test {
 
 		Dialog dialog2 = new Dialog();
 		
-		Panel contentPane2 = new Panel(Display.getWidth() / 2, Display.getHeight() / 2, 200, 100);
-		Window window2 = new Window(contentPane2, "Test");
+		TabbedPanel tab = new TabbedPanel(Display.getWidth() / 2, Display.getHeight() / 2, 200, 130);
+		Panel contentPane2 = new Panel(100, 50, 200, 100);
+		contentPane2.addComponent(new Label(100, 10, 200, 20, "1"));
+		Panel contentPane3 = new Panel(100, 50, 200, 100);
+		contentPane3.addComponent(new Label(100, 30, 200, 20, "2"));
+		tab.setTabs(new String[]{"ewiglangernameund1", "2"},  new Panel[]{contentPane2, contentPane3}); 
+		Window window2 = new Window(tab, "Test");
 		
 		dialog2.addComponent(window2);
 		

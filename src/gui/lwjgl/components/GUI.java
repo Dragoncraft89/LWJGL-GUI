@@ -115,6 +115,13 @@ public class GUI {
 		c.setParent(null);
 		components.remove(c);
 	}
+	
+	/**
+	 * Removes all components from this gui
+	 */
+	public void clearComponents() {
+		components.clear();
+	}
 
 	/**
 	 * This method gets called when a key is released

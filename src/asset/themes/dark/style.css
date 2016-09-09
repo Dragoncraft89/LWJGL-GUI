@@ -6,6 +6,10 @@ all {
 	draw-border: false;
 }
 
+windows {
+	draw-border: true;
+}
+
 panels {
 	background-color: #222222;
 	texture: "asset.themes.dark.panel.png";
@@ -35,11 +39,7 @@ progressbars, slider {
 	foreground-color: #000088;
 }
 
-windows {
-	draw-border: true;
-}
-
-windows.labels {
+windows.titlebar {
 	background-color: black;
 }
 
