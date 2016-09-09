@@ -86,4 +86,5 @@ radiobuttons {
 
 tab {
 	texture: "asset.themes.bright.tab.png";
+	foreground-color: aqua;
 }
