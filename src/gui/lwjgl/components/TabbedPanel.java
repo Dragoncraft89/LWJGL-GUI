@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 import gui.lwjgl.listener.ClickEventListener;
 import gui.lwjgl.style.StyleManager;
 import gui.lwjgl.style.StyleTemplate;
+import gui.lwjgl.util.LWJGLFont;
 
 /**
  * 
@@ -19,8 +20,6 @@ import gui.lwjgl.style.StyleTemplate;
  *
  */
 public class TabbedPanel extends Panel {
-	
-	private static final int TAB_HEIGHT = 30;
 	
 	private class TabbedPanelListener implements ClickEventListener {
 		private int index;
@@ -37,6 +36,8 @@ public class TabbedPanel extends Panel {
 		}
 		
 	}
+	
+	private int tabHeight;
 	
 	private int activeTab;
 	
@@ -69,7 +70,7 @@ public class TabbedPanel extends Panel {
 		super.paint(delta);
 		
 		glPushMatrix();
-		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2 + TAB_HEIGHT, 0);
+		glTranslatef(centerX - sizeX / 2, centerY - sizeY / 2 + tabHeight, 0);
 		
 		panels[activeTab].paint(delta);
 		
@@ -106,12 +107,18 @@ public class TabbedPanel extends Panel {
 		
 		int x = 0;
 		
+		TabGroup group = new TabGroup();
+		
 		for(int i = 0; i < tabNames.length; i++) {
 			int width = Math.min(sizePerButton, font.getWidth(tabNames[i]) + padding);
 			
-			Button b = new Button(x + width / 2, TAB_HEIGHT / 2, width, TAB_HEIGHT, tabNames[i]);
-			b.addToGroup("tab");
+			Tab b = new Tab(x + width / 2, tabHeight / 2, width, tabHeight, tabNames[i]);
+			group.addToGroup(b);
 			b.addClickEventListener(new TabbedPanelListener(this, i));
+			
+			if(i == 0) {
+				b.setSelected(true);
+			}
 			
 			addComponent(b);
 			x += width;
@@ -132,4 +139,14 @@ public class TabbedPanel extends Panel {
 		}
 	}
 
+	public void setFont(LWJGLFont font) {
+		super.setFont(font);
+		
+		tabHeight = font.getHeight() + 2;
+		
+		for(Component c:components) {
+			c.moveTo(c.centerX, tabHeight / 2);
+			c.resize(c.sizeX, tabHeight);
+		}
+	}
 }
