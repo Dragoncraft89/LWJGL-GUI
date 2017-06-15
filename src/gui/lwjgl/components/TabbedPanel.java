@@ -149,6 +149,7 @@ public class TabbedPanel extends Panel {
 			c.resize(c.sizeX, tabHeight);
 		}
 	}
+	
 	@Override
 	public boolean keyUp(GUI gui, int eventKey, char character) {
 		if (panels[activeTab].keyUp(gui, eventKey, character))
@@ -192,10 +193,10 @@ public class TabbedPanel extends Panel {
 			}
 		}
 		
-		if (panels[activeTab].mouseDown(gui, button, relativeX, relativeY))
+		if (panels[activeTab].mouseDown(gui, button, relativeX, relativeY + tabHeight))
 				return true;
-		
-		return false;
+
+		return isInComponent(x, y);
 	}
 
 	@Override
@@ -210,10 +211,10 @@ public class TabbedPanel extends Panel {
 			}
 		}
 		
-		if (panels[activeTab].mouseUp(gui, button, relativeX, relativeY))
+		if (panels[activeTab].mouseUp(gui, button, relativeX, relativeY + tabHeight))
 			return true;
 		
-		return false;
+		return isInComponent(x, y);
 	}
 
 	@Override
@@ -228,7 +229,7 @@ public class TabbedPanel extends Panel {
 			}
 		}
 
-		if (panels[activeTab].mouseWheelChanged(gui, mouseWheel, relativeX, relativeY))
+		if (panels[activeTab].mouseWheelChanged(gui, mouseWheel, relativeX, relativeY + tabHeight))
 			return true;
 		
 		return false;
@@ -246,7 +247,7 @@ public class TabbedPanel extends Panel {
 			}
 		}
 		
-		if (panels[activeTab].mouseMoved(gui, relativeX, relativeY, dX, dY))
+		if (panels[activeTab].mouseMoved(gui, relativeX, relativeY + tabHeight, dX, dY))
 			return true;
 		
 		return false;
