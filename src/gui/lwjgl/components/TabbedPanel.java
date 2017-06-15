@@ -149,7 +149,6 @@ public class TabbedPanel extends Panel {
 			c.resize(c.sizeX, tabHeight);
 		}
 	}
-	
 	@Override
 	public boolean keyUp(GUI gui, int eventKey, char character) {
 		if (panels[activeTab].keyUp(gui, eventKey, character))
@@ -185,15 +184,16 @@ public class TabbedPanel extends Panel {
 		int relativeX = x - (centerX - sizeX / 2);
 		int relativeY = y + (centerY - sizeY / 2);
 
-		if (panels[activeTab].mouseDown(gui, button, relativeX, relativeY))
-				return true;
-
 		for(Component c:components) {
 			if(c instanceof Tab) {
-				if(c.mouseDown(gui, button, x, y))
+				if(c.mouseDown(gui, button, relativeX, relativeY)) {
 					return true;
+				}
 			}
 		}
+		
+		if (panels[activeTab].mouseDown(gui, button, relativeX, relativeY))
+				return true;
 		
 		return false;
 	}
@@ -202,16 +202,16 @@ public class TabbedPanel extends Panel {
 	public boolean mouseUp(GUI gui, int button, int x, int y) {
 		int relativeX = x - (centerX - sizeX / 2);
 		int relativeY = y + (centerY - sizeY / 2);
-		
-		if (panels[activeTab].mouseUp(gui, button, relativeX, relativeY))
-			return true;
 
 		for(Component c:components) {
 			if(c instanceof Tab) {
-				if(c.mouseUp(gui, button, x, y))
+				if(c.mouseUp(gui, button, relativeX, relativeY))
 					return true;
 			}
 		}
+		
+		if (panels[activeTab].mouseUp(gui, button, relativeX, relativeY))
+			return true;
 		
 		return false;
 	}
@@ -221,15 +221,15 @@ public class TabbedPanel extends Panel {
 		int relativeX = x - (centerX - sizeX / 2);
 		int relativeY = y + (centerY - sizeY / 2);
 
-		if (panels[activeTab].mouseWheelChanged(gui, mouseWheel, relativeX, relativeY))
-			return true;
-
 		for(Component c:components) {
 			if(c instanceof Tab) {
-				if(c.mouseWheelChanged(gui, mouseWheel, x, y))
+				if(c.mouseWheelChanged(gui, mouseWheel, relativeX, relativeY))
 					return true;
 			}
 		}
+
+		if (panels[activeTab].mouseWheelChanged(gui, mouseWheel, relativeX, relativeY))
+			return true;
 		
 		return false;
 	}
@@ -239,15 +239,15 @@ public class TabbedPanel extends Panel {
 		int relativeX = x - (centerX - sizeX / 2);
 		int relativeY = y + (centerY - sizeY / 2);
 		
-		if (panels[activeTab].mouseMoved(gui, relativeX, relativeY, dX, dY))
-			return true;
-		
 		for(Component c:components) {
 			if(c instanceof Tab) {
-				if(c.mouseMoved(gui, x, y, dX, dY))
+				if(c.mouseMoved(gui, relativeX, relativeY, dX, dY))
 					return true;
 			}
 		}
+		
+		if (panels[activeTab].mouseMoved(gui, relativeX, relativeY, dX, dY))
+			return true;
 		
 		return false;
 	}
